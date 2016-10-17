@@ -1,4 +1,4 @@
-package com.wishmobile.tomazpractice;
+package com.wishmobile.tomazpractice.fragment;
 
 import android.app.Fragment;
 

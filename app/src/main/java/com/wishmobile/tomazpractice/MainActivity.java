@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.wishmobile.tomazpractice.fragment.ListViewFragment;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
+import com.wishmobile.tomazpractice.fragment.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuFragmentInteractionListener {
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
         MainMenuFragment mainMenuFragment = MainMenuFragment.newInstance(menuItems);
 
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(MAIN_FRAME, mainMenuFragment).addToBackStack(STACK_KEY_MAIN_MENU_FRAGMENT).commit();
+        fm.beginTransaction().replace(MAIN_FRAME, mainMenuFragment).commit();
     }
 
     @Override
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 // ListView
                 ListViewFragment listViewFragment = ListViewFragment.newInstace();
 
-//                fm.beginTransaction().replace(MAIN_FRAME, listViewFragment).addToBackStack(STACK_KEY_LIST_VIEW_FRAGMENT).commit();
+                fm.beginTransaction().replace(MAIN_FRAME, listViewFragment).addToBackStack(STACK_KEY_LIST_VIEW_FRAGMENT).commit();
                 Toast.makeText(this,"enter ListViewFragment",Toast.LENGTH_SHORT).show();
 
                 break;
