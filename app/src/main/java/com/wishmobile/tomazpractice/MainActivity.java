@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 // RecyclerView
                 RecyclerViewFragment recyclerViewFragment = RecyclerViewFragment.newInstance();
 
-//                fm.beginTransaction().replace(MAIN_FRAME,recyclerViewFragment).addToBackStack(STACK_KEY_RECYCLER_VIEW_FRAGMENT).commit();
+                fm.beginTransaction().replace(MAIN_FRAME,recyclerViewFragment).addToBackStack(STACK_KEY_RECYCLER_VIEW_FRAGMENT).commit();
                 Toast.makeText(this,"enter RecyclerFragment",Toast.LENGTH_SHORT).show();
                 break;
 
