@@ -1,5 +1,6 @@
 package com.wishmobile.tomazpractice.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ public class MainMenuFragment extends Fragment {
         Bundle bundle = getArguments();
 
 
-        if(bundle !=null){
+        if (bundle != null) {
             this.menuItems = (String[]) bundle.getCharSequenceArray(KEY_MENU_ITEMS);
         }
         initAdapter();
@@ -60,12 +61,12 @@ public class MainMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
-        menuButtons = (ListView)view.findViewById(R.id.lv_menuButtons);
+        menuButtons = (ListView) view.findViewById(R.id.lv_menuButtons);
         menuButtons.setAdapter(menuButtonListAdapter);
         menuButtons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick: "+menuButtonListAdapter.getItem(position));
+                Log.d(TAG, "onItemClick: " + menuButtonListAdapter.getItem(position));
                 mListener.clickItem(position);
             }
         });
@@ -84,6 +85,7 @@ public class MainMenuFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        Log.d(TAG, "onAttach");
         if (context instanceof OnMainMenuFragmentInteractionListener) {
             mListener = (OnMainMenuFragmentInteractionListener) context;
         } else {
@@ -91,6 +93,19 @@ public class MainMenuFragment extends Fragment {
                     + " must implement OnMainMenuFragmentInteractionListener");
         }
     }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof OnMainMenuFragmentInteractionListener) {
+            mListener = (OnMainMenuFragmentInteractionListener) activity;
+        } else {
+            throw new RuntimeException(activity.toString()
+                    + " must implement OnMainMenuFragmentInteractionListener");
+        }
+    }
+
 
     @Override
     public void onDetach() {

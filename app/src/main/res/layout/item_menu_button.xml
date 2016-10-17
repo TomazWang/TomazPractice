@@ -3,11 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <Button
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/default_button_height"
-        android:id="@+id/btn_item"
         android:paddingLeft="@dimen/default_button_padding"
         android:paddingRight="@dimen/default_button_padding"
-        android:text="@string/dummy_text"/>
+        android:text="@string/dummy_text"
+        android:id="@+id/btn_item"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/margin_between_buttons"
+        android:background="@color/menuButtonColor"/>
 </LinearLayout>
