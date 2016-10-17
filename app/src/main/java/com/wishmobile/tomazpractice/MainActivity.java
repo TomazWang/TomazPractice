@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.wishmobile.tomazpractice.fragment.ListViewFragment;
+import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
-import com.wishmobile.tomazpractice.fragment.RecyclerViewFragment;
+import com.wishmobile.tomazpractice.recyclerview.RecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuFragmentInteractionListener {
 

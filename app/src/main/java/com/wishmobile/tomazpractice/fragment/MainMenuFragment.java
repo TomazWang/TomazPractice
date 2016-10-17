@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.wishmobile.tomazpractice.MenuButtonListAdapter;
+import com.wishmobile.tomazpractice.listview.MenuButtonListAdapter;
 import com.wishmobile.tomazpractice.R;
 
 import java.util.ArrayList;

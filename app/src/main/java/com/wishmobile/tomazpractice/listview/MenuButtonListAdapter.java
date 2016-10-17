@@ -1,10 +1,12 @@
-package com.wishmobile.tomazpractice;
+package com.wishmobile.tomazpractice.listview;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.wishmobile.tomazpractice.R;
 
 import java.util.ArrayList;
 

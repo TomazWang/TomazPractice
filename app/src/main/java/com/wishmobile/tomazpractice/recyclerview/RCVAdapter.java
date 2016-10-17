@@ -1,4 +1,4 @@
-package com.wishmobile.tomazpractice;
+package com.wishmobile.tomazpractice.recyclerview;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.wishmobile.tomazpractice.R;
 import com.wishmobile.tomazpractice.data.DummyDatas;
 
 import java.util.ArrayList;

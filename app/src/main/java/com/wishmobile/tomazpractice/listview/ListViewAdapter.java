@@ -1,4 +1,4 @@
-package com.wishmobile.tomazpractice;
+package com.wishmobile.tomazpractice.listview;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.wishmobile.tomazpractice.R;
 import com.wishmobile.tomazpractice.data.DummyDatas;
 
 import java.util.ArrayList;

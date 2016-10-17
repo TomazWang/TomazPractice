@@ -1,4 +1,4 @@
-package com.wishmobile.tomazpractice.fragment;
+package com.wishmobile.tomazpractice.listview;
 
 import android.view.LayoutInflater;
 import android.view.View;

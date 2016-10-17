@@ -1,4 +1,4 @@
-package com.wishmobile.tomazpractice.fragment;
+package com.wishmobile.tomazpractice.listview;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.wishmobile.tomazpractice.ListViewAdapter;
 import com.wishmobile.tomazpractice.R;
 import com.wishmobile.tomazpractice.data.DummyDatas;
 
