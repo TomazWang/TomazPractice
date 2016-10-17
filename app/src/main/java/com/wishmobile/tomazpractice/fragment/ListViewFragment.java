@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,14 +23,11 @@ import com.wishmobile.tomazpractice.data.DummyDatas;
 
 import java.util.ArrayList;
 
-/**
- * Created by TomazWang on 2016/10/17.
- */
-
 public class ListViewFragment extends Fragment{
 
 
     private static final String LISTVIEW_FRAGMENT_TITLE = "ListView";
+    private static final String TAG = ListViewAdapter.class.getSimpleName();
 
     private ListViewAdapter mListAdapter;
     private SingleChoiceAdapter mSingleAdapter;
@@ -39,6 +37,8 @@ public class ListViewFragment extends Fragment{
 
 
     private boolean hasImage = true;
+    private ListView mDummyList;
+    private ListView mSingleList;
 
 
     public static ListViewFragment newInstace() {
@@ -62,9 +62,13 @@ public class ListViewFragment extends Fragment{
 
     private void initSingleData() {
 
+        ArrayList<String> singleData = new ArrayList<>();
 
+        for(int i =0;i<40;i++){
+            singleData.add("Title "+i);
+        }
 
-
+        mSingleAdapter = new SingleChoiceAdapter(singleData);
 
     }
 
@@ -91,7 +95,7 @@ public class ListViewFragment extends Fragment{
 
 
 
-        for(int i=0; i<=8; i++){
+        for(int i=0; i<=36; i++){
 
             DummyDatas dummy = new DummyDatas(
                     "Title "+i,
@@ -116,13 +120,13 @@ public class ListViewFragment extends Fragment{
 
 
         // get components
-        ListView dummyList = (ListView)view.findViewById(R.id.lv_dummyList);
-        ListView singleList = (ListView)view.findViewById(R.id.lv_singleList);
+        mDummyList = (ListView)view.findViewById(R.id.lv_dummyList);
+        mSingleList = (ListView)view.findViewById(R.id.lv_singleList);
         mToolbar = (Toolbar) view.findViewById(R.id.fragment_toolbar);
 
         initToolbar();
-        createList(dummyList);
-        createSingle();
+        createList(mDummyList);
+        createSingle(mSingleList);
 
 
 
@@ -142,9 +146,17 @@ public class ListViewFragment extends Fragment{
     }
 
 
-    private void createSingle() {
+    private void createSingle(ListView singleList) {
 
-
+        singleList.setAdapter(mSingleAdapter);
+        singleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "onItemClick");
+                mSingleAdapter.setSelectedIndex(position);
+                mSingleAdapter.notifyDataSetChanged();
+            }
+        });
 
     }
 
@@ -184,6 +196,7 @@ public class ListViewFragment extends Fragment{
                 if(hasImage){
                     changeToListSingleChoice();
                 }
+                break;
         }
 
 
@@ -192,10 +205,15 @@ public class ListViewFragment extends Fragment{
     }
 
     private void changeToListSingleChoice() {
-
+        mDummyList.setVisibility(View.GONE);
+        mSingleList.setVisibility(View.VISIBLE);
+        hasImage = false;
     }
 
     private void changeToListWithImage() {
+        mDummyList.setVisibility(View.VISIBLE);
+        mSingleList.setVisibility(View.GONE);
+        hasImage = true;
 
     }
 }

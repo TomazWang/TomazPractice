@@ -18,7 +18,7 @@
 
     <ListView
         android:layout_below="@id/fragment_toolbar"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:id="@+id/lv_singleList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
