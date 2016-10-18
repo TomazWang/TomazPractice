@@ -1,17 +1,17 @@
 package com.wishmobile.tomazpractice.tabview;
 
-import android.app.Fragment;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 
 /**
  * Created by TomazWang on 2016/10/18.
  */
 
-public class BaseTabFragment extends Fragment{
+public class BaseTabFragment extends Fragment {
 
-    private int color = Color.WHITE;
-    private int dividerColor = Color.BLUE;
-    private String title = "";
+    private int color = Color.CYAN;
+    private int dividerColor = Color.TRANSPARENT;
+    private String title = "123";
 
 
     public String getTitle() {

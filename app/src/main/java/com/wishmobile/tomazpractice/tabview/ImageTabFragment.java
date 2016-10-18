@@ -33,6 +33,7 @@ public class ImageTabFragment extends BaseTabFragment{
         args.putInt(KEY_IMG_RES, imgRes);
 
         ImageTabFragment fragment = new ImageTabFragment();
+        fragment.setTitle(tabTitle);
         fragment.setArguments(args);
         return fragment;
     }

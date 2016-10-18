@@ -1,9 +1,7 @@
 package com.wishmobile.tomazpractice.tabview;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
-import android.view.View;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
@@ -11,7 +9,7 @@ import java.util.ArrayList;
  * Created by TomazWang on 2016/10/18.
  */
 
-public class TabFragmentPagerAdapter extends PagerAdapter {
+class TabFragmentPagerAdapter extends FragmentPagerAdapter {
 
 
     private final ArrayList<BaseTabFragment> fragments;
@@ -26,7 +24,11 @@ public class TabFragmentPagerAdapter extends PagerAdapter {
         }
     }
 
-getI
+    @Override
+    public android.support.v4.app.Fragment getItem(int position) {
+        return fragments.get(position);
+    }
+
     @Override
     public int getCount() {
         return fragments.size();

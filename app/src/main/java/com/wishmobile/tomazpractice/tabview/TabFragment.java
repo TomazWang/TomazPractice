@@ -1,9 +1,10 @@
 package com.wishmobile.tomazpractice.tabview;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import butterknife.ButterKnife;
 
 public class TabFragment extends Fragment {
 
+    private static final String TAG = TabFragment.class.getSimpleName();
     private TabFragmentPagerAdapter mPagerAdapter;
 
     private ArrayList<BaseTabFragment> mFragments;
@@ -49,6 +51,8 @@ public class TabFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab, container, false);
 
         ButterKnife.bind(this, view);
+
+        Log.d(TAG, "onCreateView: createview ");
 
         return view;
 

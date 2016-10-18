@@ -17,7 +17,7 @@ public class TabViewActivty extends AppCompatActivity {
 
     private void initTabFragment() {
         TabFragment tabFragment = TabFragment.newInstance();
-        getFragmentManager().beginTransaction().replace(R.id.frame_container, tabFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, tabFragment).commit();
 
     }
 
