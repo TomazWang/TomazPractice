@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.wishmobile.tomazpractice.R;
 
 import butterknife.BindView;
@@ -57,6 +58,12 @@ public class ImageTabFragment extends BaseTabFragment{
 
         View view = inflater.inflate(R.layout.fragment_tab_content, container, false);
         ButterKnife.bind(this, view);
+
+        Glide
+                .with(this)
+                .load(mImageRes)
+                .into(mImgView);
+
         mImgView.setImageDrawable(getResources().getDrawable(mImageRes));
         return view;
     }
