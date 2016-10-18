@@ -80,17 +80,39 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
         return data.size();
     }
 
+
+    public void addItem(int position, DummyDatas dummyDatas) {
+        data.add(position, dummyDatas);
+        this.notifyItemRangeInserted(position,1);
+    }
+
     public void addItem(DummyDatas dummyDatas) {
         int position = data.size();
-        data.add(dummyDatas);
-        this.notifyItemChanged(position);
+        addItem(position, dummyDatas);
     }
 
     public void removeLastItem() {
         int position = data.size()-1;
-        data.remove(position);
-        this.notifyItemRemoved(position);
+        removeItem(position);
     }
+
+    public void removeFirstItem() {
+        removeItem(0);
+    }
+
+    public void removeItem(int position){
+        if(data.size() == 0){
+            return;
+        }
+        data.remove(position);
+        this.notifyItemRangeRemoved(position,1);
+    }
+
+    public void clear() {
+        data.clear();
+        this.notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -1,0 +1,240 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:rowCount="7"
+    android:columnCount="4"
+    tools:context="com.wishmobile.tomazpractice.calculatorview.CalculatorFragment">
+
+
+        <!-- row 0 -->
+
+        <EditText
+            android:id="@+id/txt_result"
+            android:hint="0"
+            android:textSize="32sp"
+            android:gravity="center_vertical|right"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_columnSpan="4"
+            android:background="@color/colorAccent" />
+
+        <!-- row 1 -->
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_C"
+            android:layout_columnSpan="2"
+            android:text="C"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_back"
+            android:text="←"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_multiply"
+            android:text="X"
+            android:textSize="32sp" />
+
+        <!-- row 2 -->
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:gravity="center"
+            android:id="@+id/btn_seven"
+            android:text="7"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_eight"
+            android:text="8"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_nine"
+            android:text="9"
+            android:textSize="32sp" />
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_minus"
+            android:text="-"
+            android:textSize="32sp" />
+
+        <!-- row 3 -->
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_four"
+            android:text="4"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_five"
+            android:text="5"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_six"
+            android:text="6"
+            android:textSize="32sp" />
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_plus"
+            android:text="+"
+            android:textSize="32sp" />
+
+
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_one"
+            android:text="1"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_two"
+            android:text="2"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_three"
+            android:text="3"
+            android:textSize="32sp" />
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_equal"
+            android:layout_rowSpan="2"
+            android:text="="
+            android:textSize="32sp" />
+
+        <!-- row 5 -->
+
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_zero"
+            android:text="0"
+            android:layout_columnSpan="2"
+            android:textSize="32sp" />
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_dot"
+            android:text="."
+            android:textSize="32sp" />
+
+        <!-- row 6 -->
+
+
+        <TextView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:id="@+id/btn_enter"
+            android:text="Enter"
+            android:layout_columnSpan="4"
+            android:textSize="32sp" />
+
+
+    </GridLayout>
+
+

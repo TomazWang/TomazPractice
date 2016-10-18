@@ -96,11 +96,7 @@ public class ListViewFragment extends Fragment{
 
         for(int i=0; i<=36; i++){
 
-            DummyDatas dummy = new DummyDatas(
-                    "Title "+i,
-                    "Name "+i,
-                    icons[i%icons.length]
-            );
+            DummyDatas dummy = new DummyDatas(i);
 
             dummyDatases.add(dummy);
         }

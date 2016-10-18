@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.wishmobile.tomazpractice.calculatorview.CalculatorFragment;
 import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
 import com.wishmobile.tomazpractice.recyclerview.RecyclerViewFragment;
@@ -18,12 +19,18 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
     private static final String STACK_KEY_MAIN_MENU_FRAGMENT = "mainMenuFrgament";
     private static final String STACK_KEY_LIST_VIEW_FRAGMENT = "listViewFragment";
     private static final String STACK_KEY_RECYCLER_VIEW_FRAGMENT = "recyclerViewFragment";
+    private static final String STACK_KEY_CALCULATOR_FRAGMENT = "calculatorFragment";
+
+
+
     private static final String TAG = MainActivity.class.getSimpleName();
+
 
 
     private String[] menuItems = new String[]{
             "ListView",
             "RecyclerView",
+            "Calculator",
             ""
     };
 
@@ -70,6 +77,16 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 fm.beginTransaction().replace(MAIN_FRAME,recyclerViewFragment).addToBackStack(STACK_KEY_RECYCLER_VIEW_FRAGMENT).commit();
                 Toast.makeText(this,"enter RecyclerFragment",Toast.LENGTH_SHORT).show();
                 break;
+
+            case 2:
+                // Calculator
+                CalculatorFragment calculatorFragment = CalculatorFragment.newInstance();
+                fm.beginTransaction().replace(MAIN_FRAME, calculatorFragment).addToBackStack(STACK_KEY_CALCULATOR_FRAGMENT).commit();
+                break;
+
+
+
+
 
         }
     }

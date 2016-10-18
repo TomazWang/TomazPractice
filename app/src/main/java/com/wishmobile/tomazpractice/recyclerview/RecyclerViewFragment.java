@@ -32,7 +32,6 @@ public class RecyclerViewFragment extends Fragment {
     RecyclerView mRecyclerView;
 
 
-
     private ArrayList<DummyDatas> mDummyDates = new ArrayList<>();
 
     // for RecyclerView
@@ -50,13 +49,11 @@ public class RecyclerViewFragment extends Fragment {
 
 
     @IntDef({LINER_LAYOUT, GRID_LAYOUT, FLOW_LAYOUT})
-    public @interface LayoutManagerType {}
+    public @interface LayoutManagerType {
+    }
 
     @LayoutManagerType
     protected int mCurrentLayoutManagerType = LINER_LAYOUT;
-
-
-
 
 
     public static RecyclerViewFragment newInstance() {
@@ -83,17 +80,13 @@ public class RecyclerViewFragment extends Fragment {
         createRecyclerView();
 
 
-
-
         return view;
     }
 
     private void initData() {
 
-        for(int i=0; i<8; i++){
-            String title = "=Title "+i;
-            String name = "-Name "+i;
-            mDummyDates.add(new DummyDatas(title, name, R.drawable.analytics));
+        for (int i = 0; i < 8; i++) {
+            mDummyDates.add(new DummyDatas(i));
         }
 
         mAdapter = new RCVAdapter(mDummyDates);
@@ -109,15 +102,15 @@ public class RecyclerViewFragment extends Fragment {
     private void setRecyclerViewLayoutManager(@LayoutManagerType int type) {
 
 
-        switch (type){
+        switch (type) {
             case GRID_LAYOUT:
-                mLayoutManager = new GridLayoutManager(getActivity(),mSpanCount);
+                mLayoutManager = new GridLayoutManager(getActivity(), mSpanCount);
                 mCurrentLayoutManagerType = GRID_LAYOUT;
 
                 break;
 
             case FLOW_LAYOUT:
-                mLayoutManager = new StaggeredGridLayoutManager(mSpanCount-1, StaggeredGridLayoutManager.VERTICAL);
+                mLayoutManager = new StaggeredGridLayoutManager(mSpanCount - 1, StaggeredGridLayoutManager.VERTICAL);
                 mCurrentLayoutManagerType = FLOW_LAYOUT;
                 break;
 
@@ -137,40 +130,50 @@ public class RecyclerViewFragment extends Fragment {
 
 
     @OnClick(R.id.btn_addFromBottom)
-    public void addItem(){
-        int id = mDummyDates.size();
-        mAdapter.addItem(new DummyDatas("=Title "+id, "-Name "+id, R.drawable.analytics));
+    public void addItem() {
+        int id = (mDummyDates.size() == 0) ? 0 : mDummyDates.get(mDummyDates.size() - 1).getId() + 1;
+        mAdapter.addItem(new DummyDatas(id));
 
     }
 
     @OnClick(R.id.btn_addFromTop)
-    public void insertItem(){
+    public void insertItem() {
+        int position = 0;
+        int id = (mDummyDates.size() == 0) ? 0 : mDummyDates.get(0).getId() - 1;
+        mAdapter.addItem(position, new DummyDatas(id));
 
+    }
+
+    @OnClick(R.id.btn_removeTop)
+    public void pullItem() {
+        mAdapter.removeFirstItem();
     }
 
 
     @OnClick(R.id.btn_removeBottom)
-    public void removeItem(){
+    public void removeItem() {
         mAdapter.removeLastItem();
     }
 
+    @OnClick(R.id.btn_clear)
+    public void removeAllItem() {
+        mAdapter.clear();
+    }
+
     @OnClick(R.id.btn_linear)
-    public void changeToLinear(){
+    public void changeToLinear() {
         setRecyclerViewLayoutManager(LINER_LAYOUT);
     }
 
     @OnClick(R.id.btn_grid)
-    public void changeToGrid(){
+    public void changeToGrid() {
         setRecyclerViewLayoutManager(GRID_LAYOUT);
     }
 
     @OnClick(R.id.btn_flow)
-    public void changeToFlow(){
+    public void changeToFlow() {
         setRecyclerViewLayoutManager(FLOW_LAYOUT);
     }
-
-
-
 
 
 }
