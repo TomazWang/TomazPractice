@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
     private static final String STACK_KEY_LIST_VIEW_FRAGMENT = "listViewFragment";
     private static final String STACK_KEY_RECYCLER_VIEW_FRAGMENT = "recyclerViewFragment";
     private static final String STACK_KEY_CALCULATOR_FRAGMENT = "calculatorFragment";
+    private static final String STACK_KEY_SCROLL_VIEW= "scrollviewFragment";
 
 
 
@@ -30,8 +31,10 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
     private String[] menuItems = new String[]{
             "ListView",
             "RecyclerView",
-            "Calculator",
+            "Calculator Layout",
+            "Scroll View",
             ""
+            //TODO: add item
     };
 
 
@@ -84,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 fm.beginTransaction().replace(MAIN_FRAME, calculatorFragment).addToBackStack(STACK_KEY_CALCULATOR_FRAGMENT).commit();
                 break;
 
+
+            case 3:
+                // ScrollView
 
 
 

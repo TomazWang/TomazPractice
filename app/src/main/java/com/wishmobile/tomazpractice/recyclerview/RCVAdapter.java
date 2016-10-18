@@ -66,13 +66,27 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         DummyDatas dummyData = data.get(position);
 
         holder.txtTitle.setText(dummyData.getTitle());
         holder.txtName.setText(dummyData.getName());
 
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeValue(position);
+            }
+        });
+
+
+
+    }
+
+    private void changeValue(int position) {
+        data.get(position).addValue();
+        this.notifyItemChanged(position);
     }
 
     @Override
@@ -127,13 +141,6 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
             this.txtTitle = (TextView) itemView.findViewById(R.id.txt_title);
             this.txtName = (TextView) itemView.findViewById(R.id.txt_name);
             this.img = (ImageView)itemView.findViewById(R.id.iv_img);
-
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // TODO: click to change content;
-                }
-            });
 
         }
     }

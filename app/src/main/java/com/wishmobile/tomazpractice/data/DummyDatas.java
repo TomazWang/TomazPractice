@@ -7,37 +7,37 @@ package com.wishmobile.tomazpractice.data;
 public class DummyDatas {
 
     int id;
-    String title;
-    String name;
+    String title_prefix;
+    String namePrefix;
     int imageId;
     int value = 0;
 
     public DummyDatas(int id) {
-        this(id, "title "+id, "name "+id);
+        this(id, "title ", "value ");
     }
 
     public DummyDatas(int id, String title, String name){
         this.id = id;
-        this.title = title;
-        this.name = name;
+        this.title_prefix = title;
+        this.namePrefix = name;
         this.value = id;
     }
 
 
     public String getTitle() {
-        return title;
+        return title_prefix + id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitlePrefix(String titlePrefix) {
+        this.title_prefix = titlePrefix;
     }
 
     public String getName() {
-        return name;
+        return namePrefix + value;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNamePrefix(String namePrefix) {
+        this.namePrefix = namePrefix;
     }
 
     public int getImageId() {
@@ -50,5 +50,21 @@ public class DummyDatas {
 
     public int getId() {
         return id;
+    }
+
+    public void addValue() {
+        this.value ++;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }
