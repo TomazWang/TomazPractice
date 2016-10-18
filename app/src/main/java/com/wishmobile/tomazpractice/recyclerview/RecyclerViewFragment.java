@@ -117,7 +117,7 @@ public class RecyclerViewFragment extends Fragment {
                 break;
 
             case FLOW_LAYOUT:
-                mLayoutManager = new StaggeredGridLayoutManager(mSpanCount, StaggeredGridLayoutManager.HORIZONTAL);
+                mLayoutManager = new StaggeredGridLayoutManager(mSpanCount-1, StaggeredGridLayoutManager.VERTICAL);
                 mCurrentLayoutManagerType = FLOW_LAYOUT;
                 break;
 
@@ -136,18 +136,21 @@ public class RecyclerViewFragment extends Fragment {
     }
 
 
-    @OnClick(R.id.btn_add)
+    @OnClick(R.id.btn_addFromBottom)
     public void addItem(){
-        // TODO: add item
         int id = mDummyDates.size();
         mAdapter.addItem(new DummyDatas("=Title "+id, "-Name "+id, R.drawable.analytics));
 
     }
 
+    @OnClick(R.id.btn_addFromTop)
+    public void insertItem(){
 
-    @OnClick(R.id.btn_remove)
+    }
+
+
+    @OnClick(R.id.btn_removeBottom)
     public void removeItem(){
-        // TODO: remove item
         mAdapter.removeLastItem();
     }
 

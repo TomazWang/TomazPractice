@@ -49,7 +49,7 @@
             android:text="+"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_addFromTop"
             android:layout_weight="1"/>
 
         <Button
@@ -57,7 +57,22 @@
             android:layout_alignTop="@+id/btn_linear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_remove"
+            android:id="@+id/btn_removeTop"
+            android:layout_weight="1"/>
+
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_addFromBottom"
+            android:layout_weight="1"/>
+
+        <Button
+            android:text="-"
+            android:layout_alignTop="@+id/btn_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_removeBottom"
             android:layout_weight="1"/>
 
     </LinearLayout>
