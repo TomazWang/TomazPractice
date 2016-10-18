@@ -6,4 +6,5 @@
     <dimen name="default_button_padding">16dp</dimen>
     <dimen name="margin_between_buttons">8dp</dimen>
     <dimen name="list_height_multiple_line">72dp</dimen>
+    <dimen name="drawer_width">240dp</dimen>
 </resources>

@@ -2,11 +2,13 @@ package com.wishmobile.tomazpractice;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.wishmobile.tomazpractice.calculatorview.CalculatorFragment;
+import com.wishmobile.tomazpractice.drawermenu.DrawerActivity;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
 import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.recyclerview.RecyclerViewFragment;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
             "RecyclerView",
             "Calculator Layout",
             "Scroll View",
+            "Navigation Drawer",
+            "",
             ""
             //TODO: add item
     };
@@ -87,6 +91,19 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 // ScrollView
                 ScrollFragment scrollFragment = ScrollFragment.newInstance();
                 replaceFragment(scrollFragment, STACK_KEY_SCROLL_VIEW);
+                break;
+
+
+            case 4:
+                // Drawer
+                Intent intent = new Intent();
+                intent.setClass(this, DrawerActivity.class);
+                startActivity(intent);
+                break;
+
+
+            case 5:
+                // TabView
                 break;
 
 

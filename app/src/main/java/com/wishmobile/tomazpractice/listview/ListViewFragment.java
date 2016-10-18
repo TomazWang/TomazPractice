@@ -164,9 +164,9 @@ public class ListViewFragment extends Fragment{
         ActionBar actionBar = activity.getSupportActionBar();
         if(actionBar != null){
             actionBar.setDefaultDisplayHomeAsUpEnabled(false);
+       
         }
 
-        actionBar.setTitle(LISTVIEW_FRAGMENT_TITLE);
         setHasOptionsMenu(true);
 
     }
