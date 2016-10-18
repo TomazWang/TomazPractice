@@ -1,15 +1,16 @@
 package com.wishmobile.tomazpractice;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.wishmobile.tomazpractice.calculatorview.CalculatorFragment;
-import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
+import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.recyclerview.RecyclerViewFragment;
+import com.wishmobile.tomazpractice.scrollview.ScrollFragment;
 
 public class MainActivity extends AppCompatActivity implements MainMenuFragment.OnMainMenuFragmentInteractionListener {
 
@@ -20,12 +21,10 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
     private static final String STACK_KEY_LIST_VIEW_FRAGMENT = "listViewFragment";
     private static final String STACK_KEY_RECYCLER_VIEW_FRAGMENT = "recyclerViewFragment";
     private static final String STACK_KEY_CALCULATOR_FRAGMENT = "calculatorFragment";
-    private static final String STACK_KEY_SCROLL_VIEW= "scrollviewFragment";
-
+    private static final String STACK_KEY_SCROLL_VIEW = "scrollviewFragment";
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
-
 
 
     private String[] menuItems = new String[]{
@@ -58,42 +57,44 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
 
     @Override
     public void clickItem(int position) {
-        Log.d(TAG, "clickItem: "+position);
-        
+        Log.d(TAG, "clickItem: " + position);
+
         FragmentManager fm = getFragmentManager();
 
-        switch (position){
+        switch (position) {
 
             case 0:
                 // ListView
                 ListViewFragment listViewFragment = ListViewFragment.newInstace();
-
-                fm.beginTransaction().replace(MAIN_FRAME, listViewFragment).addToBackStack(STACK_KEY_LIST_VIEW_FRAGMENT).commit();
-                Toast.makeText(this,"enter ListViewFragment",Toast.LENGTH_SHORT).show();
+                replaceFragment(listViewFragment, STACK_KEY_LIST_VIEW_FRAGMENT);
 
                 break;
 
             case 1:
                 // RecyclerView
                 RecyclerViewFragment recyclerViewFragment = RecyclerViewFragment.newInstance();
-
-                fm.beginTransaction().replace(MAIN_FRAME,recyclerViewFragment).addToBackStack(STACK_KEY_RECYCLER_VIEW_FRAGMENT).commit();
-                Toast.makeText(this,"enter RecyclerFragment",Toast.LENGTH_SHORT).show();
+                replaceFragment(recyclerViewFragment, STACK_KEY_RECYCLER_VIEW_FRAGMENT);
                 break;
 
             case 2:
                 // Calculator
                 CalculatorFragment calculatorFragment = CalculatorFragment.newInstance();
-                fm.beginTransaction().replace(MAIN_FRAME, calculatorFragment).addToBackStack(STACK_KEY_CALCULATOR_FRAGMENT).commit();
+                replaceFragment(calculatorFragment, STACK_KEY_CALCULATOR_FRAGMENT);
                 break;
 
 
             case 3:
                 // ScrollView
-
-
+                ScrollFragment scrollFragment = ScrollFragment.newInstance();
+                replaceFragment(scrollFragment, STACK_KEY_SCROLL_VIEW);
+                break;
 
 
         }
+    }
+
+    private void replaceFragment(Fragment fragment, String stackTag) {
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(MAIN_FRAME, fragment).addToBackStack(stackTag).commit();
     }
 }
