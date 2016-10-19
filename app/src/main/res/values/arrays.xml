@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_drop_down">
+        <item name="allitem">@string/allItem</item>
+        <item name="cart">@string/cart</item>
+        <item name="order">@string/order</item>
+
+    </string-array>
+
+</resources>

@@ -6,4 +6,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="single_choice">Single Choice</string>
     <string name="list_with_image">List With Image</string>
+    <string name="cart">購物車</string>
+    <string name="order">訂單</string>
+    <string name="allItem">全部商品</string>
+    <string name="navigatiion_drawer_open">Oepn</string>
+    <string name="navigation_drawer_close">Close</string>
 </resources>

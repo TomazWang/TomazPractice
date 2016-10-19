@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".tabview.TabViewActivty"></activity>
+        <activity android:name=".drawermenu.DrawerActivity"></activity>
     </application>
 
 </manifest>

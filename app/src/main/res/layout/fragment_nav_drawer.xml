@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/iv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@color/colorAccent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:background="@color/colorPrimary"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_nav_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btn_nav_order"
+            android:layout_toStartOf="@+id/btn_nav_order"
+            android:text="@string/cart"
+            android:textSize="12sp" />
+
+
+        <Button
+            android:id="@+id/btn_nav_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/order"
+            android:textSize="12sp" />
+
+
+        <Button
+            android:id="@+id/btn_nav_all_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btn_nav_order"
+            android:layout_toEndOf="@+id/btn_nav_order"
+            android:text="@string/allItem"
+            android:textSize="10sp" />
+
+        <ListView
+            android:id="@+id/lv_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/btn_nav_cart"
+            android:layout_above="@+id/block_enter_btn"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/white"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="8dp" />
+
+        <LinearLayout
+            android:id="@+id/block_enter_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:id="@+id/btn_add"
+                android:text="Add Item"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
