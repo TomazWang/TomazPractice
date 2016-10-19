@@ -11,6 +11,7 @@ import com.wishmobile.tomazpractice.calculatorview.CalculatorFragment;
 import com.wishmobile.tomazpractice.drawermenu.DrawerActivity;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
 import com.wishmobile.tomazpractice.listview.ListViewFragment;
+import com.wishmobile.tomazpractice.pageindicator.CirclePageIndicatorActivity;
 import com.wishmobile.tomazpractice.recyclerview.RecyclerViewFragment;
 import com.wishmobile.tomazpractice.scrollview.ScrollFragment;
 import com.wishmobile.tomazpractice.tabview.TabViewActivty;
@@ -24,9 +25,10 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
     private static final String STACK_KEY_LIST_VIEW_FRAGMENT = "listViewFragment";
     private static final String STACK_KEY_RECYCLER_VIEW_FRAGMENT = "recyclerViewFragment";
     private static final String STACK_KEY_CALCULATOR_FRAGMENT = "calculatorFragment";
+    private static final String STACK_KEY_PAGE_INDICATOR = "pageIndicator";
+
+
     private static final String STACK_KEY_SCROLL_VIEW = "scrollviewFragment";
-
-
     private static final String TAG = MainActivity.class.getSimpleName();
 
 
@@ -37,9 +39,12 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
             "Scroll View",
             "Navigation Drawer",
             "TabView",
+            "Page Indicator",
+            "",
             ""
             //TODO: add item
     };
+
 
 
     @Override
@@ -109,10 +114,24 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 startActivity(tabViewIntent);
                 break;
 
+            case 6:
+                // Page indicator
+                Intent pagerIntent = new Intent();
+                pagerIntent.setClass(this, CirclePageIndicatorActivity.class);
+                startActivity(pagerIntent);
+                break;
+
 
 
         }
     }
+
+    public void gotoActivity(Class acvitivityClass){
+        Intent intent = new Intent();
+        intent.setClass(this, acvitivityClass);
+        startActivity(intent);
+    }
+
 
     private void replaceFragment(Fragment fragment, String stackTag) {
         FragmentManager fm = getFragmentManager();

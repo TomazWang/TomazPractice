@@ -15,8 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tabview.TabViewActivty"></activity>
-        <activity android:name=".drawermenu.DrawerActivity"></activity>
+        <activity android:name=".tabview.TabViewActivty" />
+        <activity android:name=".drawermenu.DrawerActivity" />
+        <activity android:name=".pageindicator.CirclePageIndicatorActivity"></activity>
     </application>
 
 </manifest>
