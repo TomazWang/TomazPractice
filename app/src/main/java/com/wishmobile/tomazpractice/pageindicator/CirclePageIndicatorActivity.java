@@ -3,7 +3,6 @@ package com.wishmobile.tomazpractice.pageindicator;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.wishmobile.tomazpractice.R;
@@ -93,6 +92,7 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        mViewPager.setCurrentItem(0);
         restartTimer();
     }
 
