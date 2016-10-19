@@ -100,6 +100,10 @@ public class DrawerActivity extends AppCompatActivity {
             case R.id.miProfile:
                 Toast.makeText(this,"Click on Face",Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.miHide:
+                Toast.makeText(this, "Click on Hide", Toast.LENGTH_SHORT).show();
+                break;
         }
 
 
