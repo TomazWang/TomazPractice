@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment;
 
 public class BaseTabFragment extends Fragment {
 
-    private int color = Color.CYAN;
+    private int color = Color.TRANSPARENT;
     private int dividerColor = Color.TRANSPARENT;
     private String title = "123";
 

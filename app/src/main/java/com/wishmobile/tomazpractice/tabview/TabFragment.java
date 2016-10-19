@@ -68,7 +68,7 @@ public class TabFragment extends Fragment {
         // pager
         mViewPager.setAdapter(mPagerAdapter);
 
-        // tabs
+        // tab colors
         mTabs.setCustomTabColorizer(new SlideLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
@@ -81,12 +81,14 @@ public class TabFragment extends Fragment {
             }
         });
 
+        // custom tab
+        mTabs.setCustomTabView(R.layout.tab, R.id.txt_tab_title);
+
         mTabs.setViewPager(mViewPager);
 
     }
 
     public ArrayList<BaseTabFragment> getFragments() {
-
 
         ArrayList<BaseTabFragment> fragments = new ArrayList<>();
         fragments.add(ImageTabFragment.newInstance("First", R.drawable.checklist));
@@ -94,7 +96,8 @@ public class TabFragment extends Fragment {
         fragments.add(ImageTabFragment.newInstance("Third", R.drawable.goal));
         fragments.add(ImageTabFragment.newInstance("Fourth", R.drawable.trophy));
         fragments.add(ImageTabFragment.newInstance("Fifth",R.drawable.target));
-
+        fragments.add(ImageTabFragment.newInstance("Sixth",R.drawable.trophy));
+        fragments.add(ImageTabFragment.newInstance("Seventh",R.drawable.business_partnership));
 
         return fragments;
     }

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
@@ -22,6 +23,9 @@ import android.widget.TextView;
 
 public class SlideLayout extends HorizontalScrollView{
 
+
+    private String TAG = SlideLayout.class.getSimpleName();
+
     public interface TabColorizer {
 
         int getIndicatorColor(int position);
@@ -29,6 +33,7 @@ public class SlideLayout extends HorizontalScrollView{
         int getDividerColor(int position);
 
     }
+
 
     private static final int TITLE_OFFSET_DIPS = 24;
     private static final int TAB_VIEW_PADDING_DIPS = 16;
@@ -38,6 +43,8 @@ public class SlideLayout extends HorizontalScrollView{
 
     private int mTabViewLayoutId;
     private int mTabViewTextViewId;
+
+    private View mCurrentSelectedTab= null;
 
     private ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
@@ -82,12 +89,7 @@ public class SlideLayout extends HorizontalScrollView{
         mViewPagerPageChangeListener = listener;
     }
 
-    /**
-     * Set the custom layout to be inflated for the tab views.
-     *
-     * @param layoutResId Layout id to be inflated
-     * @param textViewId id of the {@link TextView} in the inflated view
-     */
+
     public void setCustomTabView(int layoutResId, int textViewId) {
         mTabViewLayoutId = layoutResId;
         mTabViewTextViewId = textViewId;
@@ -99,7 +101,7 @@ public class SlideLayout extends HorizontalScrollView{
         mViewPager = viewPager;
         if (viewPager != null) {
             viewPager.setOnPageChangeListener(new InternalViewPagerListener());
-            populateTabStrip();
+            populateTabStrip(viewPager.getContext());
         }
     }
 
@@ -135,7 +137,7 @@ public class SlideLayout extends HorizontalScrollView{
         return textView;
     }
 
-    private void populateTabStrip() {
+    private void populateTabStrip(Context context) {
         final PagerAdapter adapter = mViewPager.getAdapter();
         final View.OnClickListener tabClickListener = new TabClickListener();
 
@@ -145,9 +147,16 @@ public class SlideLayout extends HorizontalScrollView{
 
             if (mTabViewLayoutId != 0) {
                 // If there is a custom tab view layout id set, try and inflate it
+                Log.d(TAG, "populateTabStrip: inflate custom layout");
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
                 tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+
+                WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+                Display display = wm.getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+                tabTitleView.setWidth((size.x / 7)*2);
             }
 
             if (tabView == null) {
@@ -163,6 +172,7 @@ public class SlideLayout extends HorizontalScrollView{
 
             mTabStrip.addView(tabView);
         }
+        mTabStrip.getChildAt(0).setSelected(true);
     }
 
     @Override
@@ -182,6 +192,19 @@ public class SlideLayout extends HorizontalScrollView{
 
         View selectedChild = mTabStrip.getChildAt(tabIndex);
         if (selectedChild != null) {
+
+            // switch selection
+            if(positionOffset == 0 && selectedChild != mCurrentSelectedTab){
+                selectedChild.setSelected(true);
+
+                if(mCurrentSelectedTab != null){
+                    mCurrentSelectedTab.setSelected(false);
+                }
+
+                mCurrentSelectedTab = selectedChild;
+            }
+
+
             int targetScrollX = selectedChild.getLeft() + positionOffset;
 
             if (tabIndex > 0 || positionOffset > 0) {
@@ -191,6 +214,8 @@ public class SlideLayout extends HorizontalScrollView{
 
             scrollTo(targetScrollX, 0);
         }
+
+
     }
 
     private class InternalViewPagerListener implements ViewPager.OnPageChangeListener {
