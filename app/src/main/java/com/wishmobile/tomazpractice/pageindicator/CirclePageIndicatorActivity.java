@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.wishmobile.tomazpractice.R;
+import com.wishmobile.tomazpractice.data.PageData;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -19,7 +20,7 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
 
     private static final String TAG = CirclePageIndicatorActivity.class.getSimpleName();
 
-    private static final int AUTO_SLIDE_SEC = 5;
+    private static final int AUTO_SLIDE_SEC = 7;
 
     @BindView(R.id.block_viewpager)
     ViewPager mViewPager;
@@ -28,7 +29,7 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
     CirclePageIndicator mIndicator;
 
     private CircleIndicatorAdapter mPagerAdapter;
-    private ArrayList<String> mData;
+    private ArrayList<PageData> mData;
     private Timer mTimer;
 
     @Override
@@ -48,14 +49,14 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
 
 
     private void initData() {
-        mData = new ArrayList<String>();
-        mData.add("One");
-        mData.add("Two");
-        mData.add("Three");
-        mData.add("Four");
-        mData.add("Five");
-        mData.add("Six");
-        mData.add("Seven");
+        mData = new ArrayList<PageData>();
+        mData.add(new PageData("One",0));
+        mData.add(new PageData("Two",1));
+        mData.add(new PageData("Three", 2));
+        mData.add(new PageData("Four", 3));
+        mData.add(new PageData("Five", 4));
+        mData.add(new PageData("Six", 5));
+        mData.add(new PageData("Seven", 6));
     }
 
 
@@ -102,8 +103,12 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
     private void restartTimer() {
         if (mTimer == null) {
             mTimer = new Timer();
-            mTimer.scheduleAtFixedRate(new SlidPageTask(), AUTO_SLIDE_SEC*1000, AUTO_SLIDE_SEC * 1000);
+        }else{
+            mTimer.cancel();
+            mTimer = new Timer();
         }
+
+        mTimer.scheduleAtFixedRate(new SlidPageTask(), AUTO_SLIDE_SEC*1000, AUTO_SLIDE_SEC * 1000);
     }
 
     private class SlidPageTask extends TimerTask {

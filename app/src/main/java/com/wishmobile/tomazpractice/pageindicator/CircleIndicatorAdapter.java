@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.viewpagerindicator.IconPagerAdapter;
+import com.wishmobile.tomazpractice.data.PageData;
 
 import java.util.ArrayList;
 
@@ -12,11 +13,11 @@ import java.util.ArrayList;
  * Created by TomazWang on 2016/10/19.
  */
 
-public class CircleIndicatorAdapter extends FragmentPagerAdapter implements IconPagerAdapter{
+public class CircleIndicatorAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
 
-    private final ArrayList<String> mDatas;
+    private final ArrayList<PageData> mDatas;
 
-    public CircleIndicatorAdapter(FragmentManager fm, ArrayList<String>  datas) {
+    public CircleIndicatorAdapter(FragmentManager fm, ArrayList<PageData> datas) {
         super(fm);
         this.mDatas = datas;
     }
@@ -28,7 +29,7 @@ public class CircleIndicatorAdapter extends FragmentPagerAdapter implements Icon
     }
 
     @Override
-        public int getIconResId(int index) {
+    public int getIconResId(int index) {
         return 0;
     }
 
