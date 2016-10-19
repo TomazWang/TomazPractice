@@ -52,7 +52,10 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
         mData.add("One");
         mData.add("Two");
         mData.add("Three");
-
+        mData.add("Four");
+        mData.add("Five");
+        mData.add("Six");
+        mData.add("Seven");
     }
 
 
