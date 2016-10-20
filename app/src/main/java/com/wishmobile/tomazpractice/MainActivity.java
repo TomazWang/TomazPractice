@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
             "Navigation Drawer",
             "TabView",
             "Page Indicator",
-            "",
+            "FormView",
             ""
             //TODO: add item
     };
@@ -119,6 +119,12 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 Intent pagerIntent = new Intent();
                 pagerIntent.setClass(this, CirclePageIndicatorActivity.class);
                 startActivity(pagerIntent);
+                break;
+
+            case 7:
+                // Form view
+
+
                 break;
 
 
