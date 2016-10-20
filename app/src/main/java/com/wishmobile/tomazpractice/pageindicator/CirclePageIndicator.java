@@ -275,8 +275,6 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
             if(dX > (longOffset + (count-1) * threeRadius)){
                 Log.d(TAG, "onDraw: outside");
-                dX = longOffset + (count-1) *threeRadius;
-            }else if(dX < longOffset){
                 dX = longOffset;
             }
 
