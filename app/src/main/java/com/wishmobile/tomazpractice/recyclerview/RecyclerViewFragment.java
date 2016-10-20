@@ -106,19 +106,20 @@ public class RecyclerViewFragment extends Fragment {
             case GRID_LAYOUT:
                 mLayoutManager = new GridLayoutManager(getActivity(), mSpanCount);
                 mCurrentLayoutManagerType = GRID_LAYOUT;
-
+                mAdapter.setFlow(false);
                 break;
 
             case FLOW_LAYOUT:
                 mLayoutManager = new StaggeredGridLayoutManager(mSpanCount - 1, StaggeredGridLayoutManager.VERTICAL);
                 mCurrentLayoutManagerType = FLOW_LAYOUT;
+                mAdapter.setFlow(true);
                 break;
 
             case LINER_LAYOUT:
             default:
                 mLayoutManager = new LinearLayoutManager(getActivity());
                 mCurrentLayoutManagerType = LINER_LAYOUT;
-
+                mAdapter.setFlow(false);
                 break;
 
 

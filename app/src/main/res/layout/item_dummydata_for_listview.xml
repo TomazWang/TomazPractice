@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_height_multiple_line"
+    android:id="@+id/view_container"
     android:orientation="vertical">
 
 
