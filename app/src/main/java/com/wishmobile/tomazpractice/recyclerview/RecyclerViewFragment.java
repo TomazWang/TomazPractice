@@ -45,7 +45,7 @@ public class RecyclerViewFragment extends Fragment {
     public static final int FLOW_LAYOUT = 2;
 
     private static final String KEY_LAYOOUT_MABAGER_TYPE = "layoutManagerType";
-    private int mSpanCount = 4;
+    private int mSpanCount = 3;
 
 
     @IntDef({LINER_LAYOUT, GRID_LAYOUT, FLOW_LAYOUT})
@@ -110,7 +110,7 @@ public class RecyclerViewFragment extends Fragment {
                 break;
 
             case FLOW_LAYOUT:
-                mLayoutManager = new StaggeredGridLayoutManager(mSpanCount - 1, StaggeredGridLayoutManager.VERTICAL);
+                mLayoutManager = new StaggeredGridLayoutManager(mSpanCount, StaggeredGridLayoutManager.VERTICAL);
                 mCurrentLayoutManagerType = FLOW_LAYOUT;
                 mAdapter.setFlow(true);
                 break;
@@ -133,16 +133,18 @@ public class RecyclerViewFragment extends Fragment {
     @OnClick(R.id.btn_addFromBottom)
     public void addItem() {
         int id = (mDummyDates.size() == 0) ? 0 : mDummyDates.get(mDummyDates.size() - 1).getId() + 1;
-        mAdapter.addItem(new DummyDatas(id));
+        int position = mAdapter.addItem(new DummyDatas(id));
+        mRecyclerView.smoothScrollToPosition(position);
 
     }
 
     @OnClick(R.id.btn_addFromTop)
     public void insertItem() {
+
         int position = 0;
         int id = (mDummyDates.size() == 0) ? 0 : mDummyDates.get(0).getId() - 1;
+        mRecyclerView.smoothScrollToPosition(0);
         mAdapter.addItem(position, new DummyDatas(id));
-
     }
 
     @OnClick(R.id.btn_removeTop)
@@ -153,7 +155,10 @@ public class RecyclerViewFragment extends Fragment {
 
     @OnClick(R.id.btn_removeBottom)
     public void removeItem() {
-        mAdapter.removeLastItem();
+        int position = mAdapter.removeLastItem();
+        if(position < 0 ) {
+            position = 0;
+        }        mRecyclerView.smoothScrollToPosition(position);
     }
 
     @OnClick(R.id.btn_clear)

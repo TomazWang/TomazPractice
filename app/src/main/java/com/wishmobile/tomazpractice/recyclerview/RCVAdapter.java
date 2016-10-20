@@ -1,5 +1,6 @@
 package com.wishmobile.tomazpractice.recyclerview;
 
+import android.support.v4.util.ArrayMap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
     private final ArrayList<DummyDatas> data;
     private Random mRandom = new Random();
     private boolean isFlow = false;
-    private ArrayList<Integer> mHeights = new ArrayList<>();
+    private ArrayMap<Integer,Integer> mHeights = new ArrayMap<>();
     private int mBasicViewHeight = 0;
 
     public RCVAdapter(ArrayList<DummyDatas> dummyDates) {
@@ -40,7 +41,7 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
 
-        if (position % 2 == 0) {
+        if (getItemId(position) % 2 == 0) {
             return TYPE_A;
         } else {
             return TYPE_B;
@@ -52,7 +53,6 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        Log.d(TAG, "onCreateViewHolder: creating view holder");
         int layoutId = R.layout.item_dummydata_for_recyclerview;
 
         if (viewType == TYPE_B) {
@@ -84,14 +84,14 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
 
 
         if (isFlow()) {
-            if (position >= mHeights.size() || mHeights.get(position) == 0) {
+            if (mHeights.get(data.get(position).getId()) == null) {
                 if(mBasicViewHeight == 0 ){
                     mBasicViewHeight = holder.container.getLayoutParams().height;
                 }
-                mHeights.add(position,holder.container.getLayoutParams().height = getRandomInt());
+                mHeights.put(data.get(position).getId(),holder.container.getLayoutParams().height = getRandomInt());
 
             } else {
-                holder.container.getLayoutParams().height = mHeights.get(position);
+                holder.container.getLayoutParams().height = mHeights.get(data.get(position).getId());
             }
         }else{
             if(mBasicViewHeight == 0){
@@ -102,6 +102,11 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
         }
 
 
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return data.get(position).getId();
     }
 
     private int getRandomInt() {
@@ -123,31 +128,35 @@ public class RCVAdapter extends RecyclerView.Adapter<RCVAdapter.ViewHolder> {
     }
 
 
-    public void addItem(int position, DummyDatas dummyDatas) {
+    public int addItem(int position, DummyDatas dummyDatas) {
         data.add(position, dummyDatas);
         this.notifyItemRangeInserted(position, 1);
+        return position;
     }
 
-    public void addItem(DummyDatas dummyDatas) {
+    public int addItem(DummyDatas dummyDatas) {
         int position = data.size();
         addItem(position, dummyDatas);
+        return position;
     }
 
-    public void removeLastItem() {
+    public int removeLastItem() {
         int position = data.size() - 1;
         removeItem(position);
+        return position;
     }
 
-    public void removeFirstItem() {
-        removeItem(0);
+    public int removeFirstItem() {
+        return removeItem(0);
     }
 
-    public void removeItem(int position) {
+    public int removeItem(int position) {
         if (data.size() == 0) {
-            return;
+            return position;
         }
         data.remove(position);
         this.notifyItemRangeRemoved(position, 1);
+        return position;
     }
 
     public void clear() {
