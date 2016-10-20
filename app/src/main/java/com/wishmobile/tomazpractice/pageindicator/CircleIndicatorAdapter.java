@@ -24,6 +24,7 @@ public class CircleIndicatorAdapter extends FragmentPagerAdapter implements Icon
 
     @Override
     public Fragment getItem(int position) {
+        position = position % mDatas.size();
         Fragment fragment = PagerFragment.newInstance(mDatas.get(position));
         return fragment;
     }
@@ -36,5 +37,9 @@ public class CircleIndicatorAdapter extends FragmentPagerAdapter implements Icon
     @Override
     public int getCount() {
         return mDatas.size();
+    }
+
+    public ArrayList<PageData> getDatas() {
+        return mDatas;
     }
 }
