@@ -22,7 +22,7 @@
         <com.wishmobile.tomazpractice.pageindicator.CirclePageIndicator
             android:id="@+id/page_indicator"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:background="@color/colorAccent"
             android:paddingBottom="16dp"
             android:paddingTop="16dp" />
@@ -30,17 +30,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="32dp"
+        android:layout_gravity="bottom">
 
         <View
             android:id="@+id/btn_lastPage"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true" />
 
         <View
             android:id="@+id/btn_nextPage"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>

@@ -48,6 +48,8 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
 
 //        mViewPager.setCurrentItem(mViewPager.getChildCount() * CircleIndicatorAdapter.LOOPS_COUNT / 2, false);
 
+
+
     }
 
 
@@ -61,6 +63,7 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
         mData.add(new PageData("Six", 5));
         mData.add(new PageData("Seven", 6));
     }
+
 
 
     @OnClick(R.id.btn_nextPage)
