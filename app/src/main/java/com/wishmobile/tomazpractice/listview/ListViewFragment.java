@@ -147,7 +147,7 @@ public class ListViewFragment extends Fragment{
         singleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick");
+//                Log.d(TAG, "onItemClick");
                 mSingleAdapter.setSelectedIndex(position);
                 mSingleAdapter.notifyDataSetChanged();
             }

@@ -24,7 +24,6 @@ import butterknife.ButterKnife;
 
 public class DrawerActivity extends AppCompatActivity {
 
-    private static final String DRAWER_FRAGMENT_TITLE = "Navigation Drawer";
     private static final String TAG = DrawerActivity.class.getSimpleName();
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;

@@ -23,10 +23,7 @@ import butterknife.OnClick;
 
 public class PagerFragment extends Fragment {
 
-    private static final String ARG_TITLE = "argument_title";
-
     private PageData pageData;
-
 
     @BindView(R.id.txt_title)
     TextView mTitle;

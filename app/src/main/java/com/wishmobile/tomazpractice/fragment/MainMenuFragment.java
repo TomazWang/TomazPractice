@@ -85,7 +85,6 @@ public class MainMenuFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.d(TAG, "onAttach");
         if (context instanceof OnMainMenuFragmentInteractionListener) {
             mListener = (OnMainMenuFragmentInteractionListener) context;
         } else {

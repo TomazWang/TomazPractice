@@ -197,12 +197,6 @@ public class CirclePageIndicator extends View implements PageIndicator {
         }
 
 
-//        if (mCurrentPage >= count) {
-//            Log.d(TAG, "onDraw: reset current page");
-//            setCurrentItem(count - 1);
-//            return;
-//        }
-
         int longSize;
         int longPaddingBefore;
         int longPaddingAfter;
@@ -235,7 +229,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         }
 
         //Draw stroked circles
-        Log.d(TAG, "onDraw: draw stroked circles " + count);
+//        Log.d(TAG, "onDraw: draw stroked circles " + count);
         for (int iLoop = 0; iLoop < count; iLoop++) {
             float drawLong = longOffset + (iLoop * threeRadius);
             if (mOrientation == HORIZONTAL) {
@@ -258,7 +252,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
         //Draw the filled circle according to the current scroll
         int position = (mCurrentPage < count) ? mCurrentPage : mCurrentPage % count;
-        Log.d(TAG, "onDraw: filled circle position = "+position);
+        Log.d(TAG, "onDraw: filled circle position = " + position);
         float cx = (mSnap ? mSnapPage : position) * threeRadius;
 
         if (!mSnap) {
@@ -269,15 +263,14 @@ public class CirclePageIndicator extends View implements PageIndicator {
             dX = longOffset + cx;
             dY = shortOffset;
 
-            Log.d(TAG, "onDraw: cx = "+cx);
-            Log.d(TAG, "onDraw: longOffset + count * threeRadius = "+( longOffset + count * threeRadius));
-            Log.d(TAG, "onDraw: dX = "+dX);
+//            Log.d(TAG, "onDraw: cx = "+cx);
+//            Log.d(TAG, "onDraw: longOffset + count * threeRadius = "+( longOffset + count * threeRadius));
+//            Log.d(TAG, "onDraw: dX = "+dX);
 
-            if(dX > (longOffset + (count-1) * threeRadius)){
-                Log.d(TAG, "onDraw: outside");
+            if (dX > (longOffset + (count - 1) * threeRadius)) {
+//                Log.d(TAG, "onDraw: outside");
                 dX = longOffset;
             }
-
 
 
         } else {

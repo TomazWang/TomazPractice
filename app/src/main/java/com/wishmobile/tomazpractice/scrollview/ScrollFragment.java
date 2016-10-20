@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,9 +104,14 @@ public class ScrollFragment extends Fragment {
         tv.setText(itemName);
         tv.setTextSize(32f);
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(8, 16, 8, 16);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(64, 24, 64, 6);
         tv.setLayoutParams(lp);
+        tv.setGravity(Gravity.CENTER);
+
+        tv.setBackgroundColor(getActivity().getResources().getColor(R.color.colorLightPrimary));
+        tv.setTextColor(getActivity().getResources().getColor(R.color.colorPrimaryDark));
+        tv.setPadding(6,32,6,32);
 
         mCartView.addView(tv);
 

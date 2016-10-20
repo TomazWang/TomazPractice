@@ -1,6 +1,5 @@
 package com.wishmobile.tomazpractice.listview;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,7 @@ public class ListViewAdapter extends BaseAdapter{
 
     public ListViewAdapter(ArrayList<DummyDatas> datas) {
         this.datas = datas;
-        Log.d(TAG, "ListViewAdapter: init data size = "+this.datas.size());
+//        Log.d(TAG, "ListViewAdapter: init data size = "+this.datas.size());
     }
 
     @Override
