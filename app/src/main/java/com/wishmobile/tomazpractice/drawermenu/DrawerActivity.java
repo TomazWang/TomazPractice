@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -30,6 +32,8 @@ public class DrawerActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolBar;
 
+    @BindView(R.id.spinner_toolBar)
+    Spinner mSpinnerInToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class DrawerActivity extends AppCompatActivity {
         initToolBar();
 
         initDrawer();
+
     }
 
     private void initDrawer() {
@@ -61,8 +66,7 @@ public class DrawerActivity extends AppCompatActivity {
 
             actionBar.setDefaultDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
-
-            actionBar.setTitle("Drawer");
+            actionBar.setDisplayShowTitleEnabled(false);
 
         }
 
@@ -70,6 +74,27 @@ public class DrawerActivity extends AppCompatActivity {
                 this, mDrawerLayout, mToolBar, R.string.navigatiion_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
+        final ArrayAdapter<CharSequence> spinnerInToolbarAdapter = ArrayAdapter.createFromResource(this, R.array.drawer_drop_down_2, android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerInToolBar.setAdapter(spinnerInToolbarAdapter);
+        mSpinnerInToolBar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(mSpinnerInToolBar.getTag() == null){
+                    mSpinnerInToolBar.setTag(this);
+                    return;
+                }
+
+                Toast.makeText(DrawerActivity.this, spinnerInToolbarAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(DrawerActivity.this, "Nothing", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -79,11 +104,28 @@ public class DrawerActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_drawer_activity, menu);
 
         MenuItem spinnerMenuItem = menu.findItem(R.id.miSpinner);
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(spinnerMenuItem);
+        final Spinner spinner = (Spinner) MenuItemCompat.getActionView(spinnerMenuItem);
 
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.drawer_drop_down, android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.drawer_drop_down, android.R.layout.simple_spinner_dropdown_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(spinner.getTag() == null){
+                    spinner.setTag(this);
+                    return;
+                }
+                Toast.makeText(DrawerActivity.this, spinnerAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(DrawerActivity.this, "Nothing", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return true;
 
     }

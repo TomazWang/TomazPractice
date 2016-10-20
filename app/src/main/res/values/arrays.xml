@@ -7,4 +7,10 @@
 
     </string-array>
 
+    <string-array name="drawer_drop_down_2">
+        <item name="1">不重疊</item>
+        <item name="2">NotOevrlay</item>
+        <item name="3">Third</item>
+        </string-array>
+
 </resources>
