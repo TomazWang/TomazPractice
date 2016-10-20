@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.viewpagerindicator.CirclePageIndicator;
 import com.wishmobile.tomazpractice.R;
 import com.wishmobile.tomazpractice.data.PageData;
 
@@ -28,7 +27,7 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
     @BindView(R.id.page_indicator)
     CirclePageIndicator mIndicator;
 
-    private CircleIndicatorAdapter mPagerAdapter;
+    private InfiniteIndicateAdapter mPagerAdapter;
     private ArrayList<PageData> mData;
     private Timer mTimer;
 
@@ -41,17 +40,21 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
 
         initData();
 
-        mPagerAdapter = new CircleIndicatorAdapter(getSupportFragmentManager(), mData);
+        mPagerAdapter = new InfiniteIndicateAdapter(getSupportFragmentManager(), mData);
         mViewPager.setAdapter(mPagerAdapter);
         mIndicator.setViewPager(mViewPager);
+
+        mPagerAdapter.init(mIndicator, mViewPager);
+
+//        mViewPager.setCurrentItem(mViewPager.getChildCount() * CircleIndicatorAdapter.LOOPS_COUNT / 2, false);
 
     }
 
 
     private void initData() {
         mData = new ArrayList<PageData>();
-        mData.add(new PageData("One",0));
-        mData.add(new PageData("Two",1));
+        mData.add(new PageData("One", 0));
+        mData.add(new PageData("Two", 1));
         mData.add(new PageData("Three", 2));
         mData.add(new PageData("Four", 3));
         mData.add(new PageData("Five", 4));
@@ -69,10 +72,10 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
     public void nextPage() {
 
         int currentItem = mViewPager.getCurrentItem();
-        if (currentItem < mPagerAdapter.getCount()-1) {
+        if (currentItem < mPagerAdapter.getCount() - 1) {
             mViewPager.setCurrentItem(currentItem + 1);
         } else {
-            mViewPager.setCurrentItem(0);
+            mViewPager.setCurrentItem(0, false);
         }
 
     }
@@ -88,7 +91,7 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
         if (currentItem > 0) {
             mViewPager.setCurrentItem(currentItem - 1);
         } else {
-            mViewPager.setCurrentItem(mPagerAdapter.getCount() - 1);
+            mViewPager.setCurrentItem(mPagerAdapter.getCount() - 1, false);
         }
     }
 
@@ -96,19 +99,18 @@ public class CirclePageIndicatorActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mViewPager.setCurrentItem(0);
         restartTimer();
     }
 
     private void restartTimer() {
         if (mTimer == null) {
             mTimer = new Timer();
-        }else{
+        } else {
             mTimer.cancel();
             mTimer = new Timer();
         }
 
-        mTimer.scheduleAtFixedRate(new SlidPageTask(), AUTO_SLIDE_SEC*1000, AUTO_SLIDE_SEC * 1000);
+        mTimer.scheduleAtFixedRate(new SlidPageTask(), AUTO_SLIDE_SEC * 1000, AUTO_SLIDE_SEC * 1000);
     }
 
     private class SlidPageTask extends TimerTask {

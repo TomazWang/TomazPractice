@@ -37,4 +37,8 @@ public class BaseTabFragment extends Fragment {
     public void setDividerColor(int dividerColor) {
         this.dividerColor = dividerColor;
     }
+
+
+
 }
+
