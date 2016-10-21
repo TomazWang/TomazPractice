@@ -10,6 +10,7 @@ import android.util.Log;
 import com.wishmobile.tomazpractice.calculatorview.CalculatorFragment;
 import com.wishmobile.tomazpractice.drawermenu.DrawerActivity;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
+import com.wishmobile.tomazpractice.wallet.WalletActiviy;
 import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.pageindicator.CirclePageIndicatorActivity;
 import com.wishmobile.tomazpractice.recyclerview.RecyclerViewFragment;
@@ -123,8 +124,9 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
 
             case 7:
                 // Form view
-
-
+                Intent walletIntent = new Intent();
+                walletIntent.setClass(this, WalletActiviy.class);
+                startActivity(walletIntent);
                 break;
 
 
