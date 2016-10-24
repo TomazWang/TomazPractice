@@ -196,20 +196,15 @@ public class WalletListFragment extends Fragment {
 
 
     public void addNewWallet(String title, int budget) {
+        Log.d(TAG, "addNewWallet");
         mWallets.add(new Wallet(0, Wallet.CASH, title, budget));
-        walletListAdapter.notifyItemChanged(mWallets.size() -1);
+        walletListAdapter.notifyDataSetChanged();
     }
 
 
 
     private void newWallet() {
-
-        // new wallet dialog
-//        NewWalletDialog newWalletDialog = NewWalletDialog.newInstance();
-//        newWalletDialog.show(getFragmentManager(), TAG_NEW_WALLET_DIALOG);
-
-        startActivityForResult(new Intent().setClass(getActivity(), NewWalletActivity.class), NewWalletActivity.RESULT_NEW_WALLET);
-
+        getActivity().startActivityForResult(new Intent().setClass(getActivity(), NewWalletActivity.class), NewWalletActivity.RESULT_NEW_WALLET);
     }
 
 

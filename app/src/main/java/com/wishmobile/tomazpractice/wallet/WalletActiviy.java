@@ -51,7 +51,7 @@ public class WalletActiviy extends AppCompatActivity
         ButterKnife.bind(this);
         initToolBar();
         initDrawer();
-        switchToPage(currentPageId);
+        gotoPage(currentPageId);
     }
 
     private void initDrawer() {
@@ -119,22 +119,23 @@ public class WalletActiviy extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(requestCode == NewWalletActivity.RESULT_NEW_WALLET){
-            switch (resultCode){
+        Log.d(TAG, "onActivityResult: requestCode =" + requestCode + ", resultCode =" + resultCode);
+
+        if (requestCode == NewWalletActivity.RESULT_NEW_WALLET) {
+            switch (resultCode) {
                 case RESULT_OK:
                     Bundle bundle = data.getExtras();
 
-                    String title = bundle.getString(NewWalletActivity.KEY_NEW_WALLET_TITLE);
-                    int budget = bundle.getInt(NewWalletActivity.KEY_BUDGET);
-
-
-                    if(bundle != null) {
+                    if (bundle != null) {
+                        String title = bundle.getString(NewWalletActivity.KEY_NEW_WALLET_TITLE);
+                        int budget = bundle.getInt(NewWalletActivity.KEY_BUDGET);
                         walletListFragment.addNewWallet(title, budget);
 
+                    } else {
+                        Log.w(TAG, "onActivityResult: argument bundle == null");
                     }
             }
         }
-
 
 
     }
@@ -163,12 +164,12 @@ public class WalletActiviy extends AppCompatActivity
     // DrawerFragment
     @Override
     public void onListItemClick(int position) {
-        switchToPage(position);
+        gotoPage(position);
         mDrawerLayout.closeDrawers();
     }
 
-
-    private void switchToPage(int pageId) {
+    @Override
+    public void gotoPage(int pageId) {
         Log.d(TAG, "switchToPage: switch to " + pageId);
 
         switch (pageId) {
@@ -179,6 +180,14 @@ public class WalletActiviy extends AppCompatActivity
             case PAGE_SETTING:
                 // Setting
                 switchToSetting();
+                break;
+            case PAGE_PROFILE:
+                // profile setting
+                startActivity(new Intent(this, ProfileActivity.class));
+                break;
+            case PAGE_DISPLAY_SETTING:
+                // display setting
+                startActivity(new Intent(this, DisplaySettingActivity.class));
                 break;
         }
     }
@@ -199,19 +208,6 @@ public class WalletActiviy extends AppCompatActivity
         currentPageId = PAGE_SETTING;
     }
 
-    @Override
-    public void gotoPage(int pageId) {
-
-        switch (pageId) {
-
-            case PAGE_PROFILE:
-                startActivity(new Intent(this, ProfileActivity.class));
-                break;
-            case PAGE_DISPLAY_SETTING:
-                break;
-        }
-
-    }
 
 
 }

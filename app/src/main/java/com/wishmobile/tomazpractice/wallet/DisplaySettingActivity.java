@@ -24,7 +24,6 @@ public class DisplaySettingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initToolBar();
-
         initView();
     }
 

@@ -21,7 +21,7 @@
         <activity android:name=".wallet.WalletActiviy" />
         <activity android:name=".wallet.ProfileActivity" />
         <activity android:name=".wallet.WalletPageActivity" />
-        <activity android:name=".wallet.NewWalletActivity"></activity>
+        <activity android:name=".wallet.NewWalletActivity"/>
     </application>
 
 </manifest>

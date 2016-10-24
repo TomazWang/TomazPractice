@@ -17,6 +17,9 @@ import com.wishmobile.tomazpractice.widget.formview.TextItem;
 import butterknife.BindView;
 import butterknife.Unbinder;
 
+import static com.wishmobile.tomazpractice.wallet.SettingFragment.OnFragmentInteractionListener.PAGE_DISPLAY_SETTING;
+import static com.wishmobile.tomazpractice.wallet.SettingFragment.OnFragmentInteractionListener.PAGE_PROFILE;
+
 public class SettingFragment extends BaseFragment {
 
     private static final String TAG = SettingFragment.class.getSimpleName();
@@ -76,7 +79,7 @@ public class SettingFragment extends BaseFragment {
                     // profile
                     textItem.getView().setOnClickListener(v -> {
                         if(mListener != null){
-                            mListener.gotoPage(0);
+                            mListener.gotoPage(PAGE_PROFILE);
                         }
                     });
 
@@ -85,7 +88,7 @@ public class SettingFragment extends BaseFragment {
                     // display setting
                     textItem.getView().setOnClickListener(v -> {
                         if(mListener != null){
-                            mListener.gotoPage(1);
+                            mListener.gotoPage(PAGE_DISPLAY_SETTING);
                         }
                     });
                     break;
@@ -173,8 +176,8 @@ public class SettingFragment extends BaseFragment {
 
     public interface OnFragmentInteractionListener {
 
-        int PAGE_PROFILE = 0;
-        int PAGE_DISPLAY_SETTING = 1;
+        int PAGE_PROFILE = 600;
+        int PAGE_DISPLAY_SETTING = 601;
 
         void gotoPage(int pageId);
 

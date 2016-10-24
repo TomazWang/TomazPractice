@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
 import com.linkwish.widget.FormView;
@@ -62,6 +63,7 @@ public class NewWalletActivity extends AppCompatActivity {
         title.getEditText().setSingleLine(true);
         title.getEditText().setLines(1);
         title.getTextView().setSelected(false);
+        title.getTextView().setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         // date
         Calendar startCal = Calendar.getInstance();
@@ -77,7 +79,7 @@ public class NewWalletActivity extends AppCompatActivity {
 
         // budget
         budget = new NumberItem(this, R.string.budget, "");
-        budget.getValueView().setText("0");
+        budget.getValueView().setHint("0");
 
         // add into adapter
         adapter.add(new LabelItem(this, R.string.blank));
@@ -126,7 +128,12 @@ public class NewWalletActivity extends AppCompatActivity {
         Toast.makeText(this, "create wallet", Toast.LENGTH_SHORT).show();
 
         String walletName = title.getValue();
-        int budget = Integer.getInteger(this.budget.getValue());
+        int budget = this.budget.getNumberValue();
+
+        if(walletName.equals("")){
+            Toast.makeText(this, "blank wallet name", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
         Intent intent = new Intent();

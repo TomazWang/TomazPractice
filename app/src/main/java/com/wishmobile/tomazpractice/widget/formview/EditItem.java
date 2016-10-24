@@ -10,7 +10,7 @@ import com.wishmobile.tomazpractice.R;
  * Created by TomazWang on 2016/10/21.
  */
 
-public class EditItem extends com.linkwish.widget.formitem.EditItem{
+public class EditItem extends com.linkwish.widget.formitem.EditItem {
 
     public EditItem(Context context) {
         super(context);

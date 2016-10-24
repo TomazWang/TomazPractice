@@ -33,4 +33,9 @@ public class NumberItem extends EditItem {
         getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
     }
 
+    public int getNumberValue(){
+        String numberString = getEditText().getText().toString();
+        return Integer.valueOf(numberString);
+    }
+
 }
