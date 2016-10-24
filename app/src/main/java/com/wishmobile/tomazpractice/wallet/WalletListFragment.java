@@ -3,6 +3,7 @@ package com.wishmobile.tomazpractice.wallet;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.IntDef;
@@ -27,42 +28,44 @@ import butterknife.ButterKnife;
 
 public class WalletListFragment extends Fragment {
 
+    private static final String TAG_NEW_WALLET_DIALOG = "new_wallet_dialog_tag";
     private ArrayList<Wallet> mWallets = new ArrayList<Wallet>();
     private WalletListAdapter walletListAdapter;
 
-
-
     public interface OnFragmentInteractionListener {
+
+
         void setMenuButtons(MenuItem... menuButtons);
+        void gotoWallet(long id);
+
     }
-
     private OnFragmentInteractionListener mListener;
-
 
     // menu items
     private MenuItem mNewWalletMenuButton;
+
 
     // bind components
     @BindView(R.id.list_wallet)
     RecyclerView walletList;
 
-
-
     // --- All about recycler view
     // layout type
     public static final int LINER_LAYOUT = 0;
+
+
+
     public static final int GRID_LAYOUT = 1;
     public static final int FLOW_LAYOUT = 2;
-
     private static final String KEY_LAYOOUT_MABAGER_TYPE = "layoutManagerType";
-    private int mSpanCount = 2;
 
+    private int mSpanCount = 2;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @IntDef({LINER_LAYOUT, GRID_LAYOUT, FLOW_LAYOUT})
     public @interface LayoutManagerType {
-    }
 
+    }
     @WalletListFragment.LayoutManagerType
     protected int mLayoutType = LINER_LAYOUT;
 
@@ -70,12 +73,11 @@ public class WalletListFragment extends Fragment {
         return mLayoutType;
     }
 
-
-
     public WalletListFragment() { /* empty constructor */}
 
-    private static final String TAG = WalletListFragment.class.getSimpleName();
 
+
+    private static final String TAG = WalletListFragment.class.getSimpleName();
 
     public static WalletListFragment newInstance() {
         WalletListFragment fragment = new WalletListFragment();
@@ -83,6 +85,7 @@ public class WalletListFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -130,7 +133,6 @@ public class WalletListFragment extends Fragment {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -142,18 +144,19 @@ public class WalletListFragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
 
     }
 
-
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+
 
     private void initData() {
         // fetch from database
@@ -171,9 +174,9 @@ public class WalletListFragment extends Fragment {
 
 
         walletListAdapter = new WalletListAdapter(mWallets, getLayoutType() == FLOW_LAYOUT, colors);
+        walletListAdapter.setItemClickListener(id -> mListener.gotoWallet(id));
 
     }
-
 
     private void initView() {
 
@@ -192,10 +195,20 @@ public class WalletListFragment extends Fragment {
     }
 
 
+    public void addNewWallet(String title, int budget) {
+        mWallets.add(new Wallet(0, Wallet.CASH, title, budget));
+        walletListAdapter.notifyItemChanged(mWallets.size() -1);
+    }
+
+
 
     private void newWallet() {
 
-        // TODO: new wallet dialog
+        // new wallet dialog
+//        NewWalletDialog newWalletDialog = NewWalletDialog.newInstance();
+//        newWalletDialog.show(getFragmentManager(), TAG_NEW_WALLET_DIALOG);
+
+        startActivityForResult(new Intent().setClass(getActivity(), NewWalletActivity.class), NewWalletActivity.RESULT_NEW_WALLET);
 
     }
 

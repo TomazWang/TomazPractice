@@ -21,15 +21,20 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
     private static final int LIST_LAYOUT = 0;
     private static final int FLOW_LAYOUT = 1;
 
-    private final ArrayList<Wallet> mDatas;
+    private final ArrayList<Wallet> wallets;
     private final boolean isFlowLayout;
     private final int[] colors;
     private Random mRandom = new Random();
+    private OnItemClickListener itemClickListener;
 
-    public WalletListAdapter(ArrayList<Wallet> mWallets, boolean isFlowLayout, int[] colors) {
-        this.mDatas = mWallets;
+    public WalletListAdapter(ArrayList<Wallet> wallets, boolean isFlowLayout, int[] colors) {
+        this.wallets = wallets;
         this.isFlowLayout = isFlowLayout;
         this.colors = colors;
+    }
+
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @Override
@@ -55,8 +60,10 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.title.setText(mDatas.get(position).getTitle());
-        holder.balance.setText("$ " + mDatas.get(position).getBalance());
+        Wallet wallet = wallets.get(position);
+
+        holder.title.setText(wallet.getTitle());
+        holder.balance.setText("$ " + wallet.getBalance());
 
         if (isFlowLayout) {
             holder.container.getLayoutParams().height = getRandomInt();
@@ -65,6 +72,10 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
         int colorId = position % colors.length;
 
         holder.container.setBackgroundColor(colors[colorId]);
+
+        if(itemClickListener != null) {
+            holder.container.setOnClickListener(v -> itemClickListener.onItemClick(wallet.getId()));
+        }
     }
 
 
@@ -78,7 +89,7 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return wallets.size();
     }
 
 
@@ -98,6 +109,10 @@ public class WalletListAdapter extends RecyclerView.Adapter<WalletListAdapter.Vi
 
 
         }
+    }
+
+    interface OnItemClickListener {
+        void onItemClick(long walletId);
     }
 
 }

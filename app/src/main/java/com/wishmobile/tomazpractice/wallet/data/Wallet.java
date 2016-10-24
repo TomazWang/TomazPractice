@@ -12,21 +12,20 @@ public class Wallet {
 
     @IntDef({CASH, CARD})
     public @interface Type {
-    }
 
+    }
     @Wallet.Type
     int type;
 
-
     long id;
+
+
     String title;
     int budget;
     private int balance;
-
     ArrayList<CostItem> costItems = new ArrayList<>();
 
     private boolean isBalanceCounted = false;
-
 
     public Wallet(long id, int type, String title, int budget) {
         this.type = type;
@@ -34,6 +33,7 @@ public class Wallet {
         this.title = title;
         this.budget = budget;
     }
+
 
     public int getBalance() {
 
@@ -82,6 +82,10 @@ public class Wallet {
 
     public void setBudget(int budget) {
         this.budget = budget;
+    }
+
+    public CostItem getCostItem(int position) {
+        return getCostItems().get(position);
     }
 
     public ArrayList<CostItem> getCostItems() {

@@ -19,7 +19,9 @@
         <activity android:name=".drawermenu.DrawerActivity" />
         <activity android:name=".pageindicator.CirclePageIndicatorActivity" />
         <activity android:name=".wallet.WalletActiviy" />
-        <activity android:name=".wallet.ProfileActivity"></activity>
+        <activity android:name=".wallet.ProfileActivity" />
+        <activity android:name=".wallet.WalletPageActivity" />
+        <activity android:name=".wallet.NewWalletActivity"></activity>
     </application>
 
 </manifest>

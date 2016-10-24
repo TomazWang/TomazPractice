@@ -20,7 +20,8 @@ import java.util.Collections;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WalletActiviy extends AppCompatActivity implements WalletListFragment.OnFragmentInteractionListener, WalletDrawerFragment.OnFragmentInteractionListener, SettingFragment.OnFragmentInteractionListener{
+public class WalletActiviy extends AppCompatActivity
+        implements WalletListFragment.OnFragmentInteractionListener, WalletDrawerFragment.OnFragmentInteractionListener, SettingFragment.OnFragmentInteractionListener {
 
     private static final int PAGE_WALLET_LIST = 0;
     private static final int PAGE_SETTING = 1;
@@ -32,12 +33,14 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
 
     @BindView(R.id.toolbar)
     Toolbar mToolBar;
-    private MenuItem mNewWallet;
     private ArrayList<MenuItem> mMenuButtons = new ArrayList<>();
 
     // TODO: get string array from resource
 
     private int currentPageId = 0;
+
+    // fragments
+    private WalletListFragment walletListFragment;
 
 
     @Override
@@ -95,9 +98,8 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
     private void hideMenuButton() {
 
 
-        if(mMenuButtons.size() > 0){
-            Log.d(TAG, "hideMenuButton: hide menu buttons");
-            for(MenuItem menuBtn:mMenuButtons){
+        if (mMenuButtons.size() > 0) {
+            for (MenuItem menuBtn : mMenuButtons) {
                 menuBtn.setVisible(false);
             }
         }
@@ -105,14 +107,35 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
 
     private void showMenuButton() {
 
-        Log.d(TAG, "showMenuButton");
 
-        if(mMenuButtons.size() > 0){
-            Log.d(TAG, "showMenuButton: show menu buttons");
-            for(MenuItem menuBtn:mMenuButtons){
+        if (mMenuButtons.size() > 0) {
+            for (MenuItem menuBtn : mMenuButtons) {
                 menuBtn.setVisible(true);
             }
         }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(requestCode == NewWalletActivity.RESULT_NEW_WALLET){
+            switch (resultCode){
+                case RESULT_OK:
+                    Bundle bundle = data.getExtras();
+
+                    String title = bundle.getString(NewWalletActivity.KEY_NEW_WALLET_TITLE);
+                    int budget = bundle.getInt(NewWalletActivity.KEY_BUDGET);
+
+
+                    if(bundle != null) {
+                        walletListFragment.addNewWallet(title, budget);
+
+                    }
+            }
+        }
+
+
 
     }
 
@@ -125,6 +148,18 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
         Collections.addAll(this.mMenuButtons, menuButtons);
     }
 
+
+    @Override
+    public void gotoWallet(long walletId) {
+        Log.d(TAG, "gotoWallet");
+
+        Intent intent = new Intent();
+        intent.setClass(this, WalletPageActivity.class);
+        intent.putExtras(WalletPageActivity.DataBundle.setId(walletId));
+
+        startActivity(intent);
+    }
+
     // DrawerFragment
     @Override
     public void onListItemClick(int position) {
@@ -133,13 +168,10 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
     }
 
 
-
-
-
     private void switchToPage(int pageId) {
-        Log.d(TAG, "switchToPage: switch to "+ pageId);
+        Log.d(TAG, "switchToPage: switch to " + pageId);
 
-        switch(pageId){
+        switch (pageId) {
             case PAGE_WALLET_LIST:
                 // wallet list
                 switchToWalletList();
@@ -153,7 +185,7 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
 
     private void switchToWalletList() {
         FragmentManager fm = getFragmentManager();
-        WalletListFragment walletListFragment = WalletListFragment.newInstance();
+        walletListFragment = WalletListFragment.newInstance();
         fm.beginTransaction().replace(R.id.frame_content, walletListFragment).commit();
 
         currentPageId = PAGE_WALLET_LIST;
@@ -170,7 +202,7 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
     @Override
     public void gotoPage(int pageId) {
 
-        switch (pageId){
+        switch (pageId) {
 
             case PAGE_PROFILE:
                 startActivity(new Intent(this, ProfileActivity.class));
@@ -179,8 +211,7 @@ public class WalletActiviy extends AppCompatActivity implements WalletListFragme
                 break;
         }
 
-
-
-
     }
+
+
 }

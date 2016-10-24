@@ -17,9 +17,9 @@ import com.wishmobile.tomazpractice.widget.formview.TextItem;
 import butterknife.BindView;
 import butterknife.Unbinder;
 
-import static android.content.ContentValues.TAG;
-
 public class SettingFragment extends BaseFragment {
+
+    private static final String TAG = SettingFragment.class.getSimpleName();
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,14 +62,11 @@ public class SettingFragment extends BaseFragment {
 
     private void initFormView() {
 
-        Log.d(TAG, "initFormView");
 
         FormView.Adapter adapter = new FormView.Adapter();
 
         String[] settingList = getActivity().getResources().getStringArray(R.array.settingList);
         for (int i = 0; i < settingList.length; i++) {
-
-            Log.d(TAG, "initFormView: adding " + settingList[i]);
 
             TextItem textItem = new TextItem(getActivity(), settingList[i]);
 //            textItem.setSubTextIcon(R.drawable.ic_keyboard_arrow_right_white_24dp);

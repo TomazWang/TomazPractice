@@ -16,9 +16,6 @@ public class EditItem extends com.linkwish.widget.formitem.EditItem{
         super(context);
     }
 
-    public EditItem(Context context, int text, int hint) {
-        super(context, text, hint);
-    }
 
     public EditItem(Context context, int icon, int text, int hint) {
         super(context, icon, text, hint);
@@ -68,5 +65,9 @@ public class EditItem extends com.linkwish.widget.formitem.EditItem{
 
     public EditText getValueView(){
         return getEditText();
+    }
+
+    public String getValue() {
+        return getEditText().getText().toString();
     }
 }
