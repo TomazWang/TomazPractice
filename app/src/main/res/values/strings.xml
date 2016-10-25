@@ -10,4 +10,21 @@
     <string name="allItem">All Item</string>
     <string name="navigatiion_drawer_open">Oepn</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="title_wallet">Wallet</string>
+    <string name="wallet">Wallet</string>
+    <string name="categories">Categories</string>
+    <string name="setting">Setting</string>
+    <string name="mcddailyPackageName">tw.com.mcddaily</string>
+    <string name="label_name">Name</string>
+    <string name="label_gender">Gender</string>
+    <string name="label_email">Email</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_contact_info">Contact</string>
+    <string name="balance">Balance</string>
+    <string name="budget">Budget</string>
+    <string name="wallet_name_label">Wallet name</string>
+    <string name="start_date">Start</string>
+    <string name="date">Date</string>
+    <string name="end_date">End</string>
+    <string name="blank" />
 </resources>

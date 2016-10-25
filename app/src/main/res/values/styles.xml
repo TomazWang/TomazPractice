@@ -14,4 +14,36 @@
         <item name="windowActionBar">false</item>
     </style>
 
+
+    <!-- ItemView -->
+      <style name="ChFormText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/primary_text</item>
+        <item name="android:textColor">@color/form_text_gray</item>
+    </style>
+
+    <style name="ChFormTitle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/primary_text</item>
+        <item name="android:textColor">@color/form_title_gray</item>
+    </style>
+
+
+
+    <style name="TextItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/text_height</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextItem.Title" parent="ChFormTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/text_height</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextItem.Text" parent="ChFormText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/text_height</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

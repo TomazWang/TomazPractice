@@ -10,4 +10,33 @@
     <color name="menuButtonColor">#BDBDBD</color>
     <color name="colorLightPrimary">#C5CAE9</color>
     <color name="colorLightPrimaryLightBlue">#B3E5FC</color>
+
+    <color name="form_title_gray">#6E6E6E</color>
+    <color name="form_text_gray">#797979</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_gray">#D8D8D8</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="blue_E8">#28B8E8</color>
+    <color name="green_seaGreen">#20B2AA</color>
+    <color name="orange_sandyBrown">#F4A460</color>
+    <color name="purple_violet">#8A2BE2</color>
+    <color name="red_crimson">#DC143C</color>
+
+    <color name="blue_E1">#20AAE1</color>
+    <color name="green_4F">#039C4F</color>
+    <color name="green_46">#8CC146</color>
+    <color name="orange_42">#F1A642</color>
+    <color name="orange_32">#EC5B32</color>
+
+    <array name="wallet_background">
+        <item>@color/blue_E1</item>
+        <item>@color/green_4F</item>
+        <item>@color/green_46</item>
+        <item>@color/orange_32</item>
+        <item>@color/orange_42</item>
+    </array>
+
+
+
 </resources>
