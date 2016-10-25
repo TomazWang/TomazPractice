@@ -10,6 +10,7 @@ import android.util.Log;
 import com.wishmobile.tomazpractice.calculatorview.CalculatorFragment;
 import com.wishmobile.tomazpractice.drawermenu.DrawerActivity;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
+import com.wishmobile.tomazpractice.network.NetworkActivity;
 import com.wishmobile.tomazpractice.wallet.WalletActiviy;
 import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.pageindicator.CirclePageIndicatorActivity;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
             "TabView",
             "Page Indicator",
             "FormView",
-            ""
+            "API"
             //TODO: add item
     };
 
@@ -127,6 +128,11 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
                 Intent walletIntent = new Intent();
                 walletIntent.setClass(this, WalletActiviy.class);
                 startActivity(walletIntent);
+                break;
+
+            case 8:
+                // API
+                gotoActivity(NetworkActivity.class);
                 break;
 
 

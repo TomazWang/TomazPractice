@@ -38,6 +38,8 @@ android {
             url 'https://bitbucket.org/api/1.0/repositories/linkwishinc/maven-repo/raw/master/releases'
         }
 
+        jcenter { url "http://jcenter.bintray.com/" }
+
     }
 
     dependencies {
@@ -62,8 +64,23 @@ android {
         // viewpager indicator
         compile 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
 
-        // formview
+        // linkwish
+
+        // -- formview
         compile 'com.linkwish.widget:formview:1.0.1'
+        // -- dynamic server
+        compile 'com.linkwish.network:dynamic-server-retrofit:1.0.0'
+
+        // robospice
+        compile 'com.octo.android.robospice:robospice-retrofit:1.4.14'
+
+        // okhttp
+        compile 'com.squareup.okhttp:okhttp:2.7.0'
+        compile('com.squareup.okhttp:okhttp-urlconnection:2.7.0') {
+            exclude group: 'com.squareup.okio', module: 'okio'
+        }
+
+
 
     }
     compileOptions {

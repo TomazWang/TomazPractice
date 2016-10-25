@@ -27,4 +27,6 @@
     <string name="date">Date</string>
     <string name="end_date">End</string>
     <string name="blank" />
+    <string name="g_e_network">network err</string>
+    <string name="ok">OK</string>
 </resources>

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wishmobile.tomazpractice">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +24,12 @@
         <activity android:name=".wallet.WalletActiviy" />
         <activity android:name=".wallet.ProfileActivity" />
         <activity android:name=".wallet.WalletPageActivity" />
-        <activity android:name=".wallet.NewWalletActivity"/>
+        <activity android:name=".wallet.NewWalletActivity" />
+        <activity android:name=".network.NetworkActivity"/>
+
+        <service android:name="com.wishmobile.tomazpractice.network.QuestionApiService"/>
+
+
     </application>
 
 </manifest>
