@@ -25,9 +25,10 @@
         <activity android:name=".wallet.ProfileActivity" />
         <activity android:name=".wallet.WalletPageActivity" />
         <activity android:name=".wallet.NewWalletActivity" />
-        <activity android:name=".network.NetworkActivity"/>
+        <activity android:name=".network.QuestionApiActivity"/>
 
         <service android:name="com.wishmobile.tomazpractice.network.QuestionApiService"/>
+        <service android:name="com.wishmobile.tomazpractice.network.imageapi.ImageApiService"/>
 
 
     </application>

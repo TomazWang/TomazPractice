@@ -14,6 +14,8 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment{
 
+    private static final String TAG = BaseFragment.class.getSimpleName();
+
     private Unbinder unbinder;
 
     @Nullable
@@ -26,7 +28,6 @@ public abstract class BaseFragment extends Fragment{
 
         return view;
     }
-
 
     @Override
     public void onDestroyView() {
@@ -41,7 +42,5 @@ public abstract class BaseFragment extends Fragment{
     public abstract int getContentLayout();
 
     protected abstract void onCreateView(View view);
-
-
 
 }

@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.linkwish.network.dynamicserverretrofit.DynamicServerRetrofitSpiceRequest;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
+import com.wishmobile.tomazpractice.network.data.Question;
 
 import retrofit.http.POST;
 
@@ -40,27 +41,13 @@ public class QuestionApi {
         @Override
         public void onRequestSuccess(Question response) {
             Log.d(TAG, "onRequestSuccess: Gson resulets = "+new Gson().toJson(response));
-            Log.d(TAG, "onRequestSuccess: question = "+response.question);
-            Log.d(TAG, "onRequestSuccess: vote_date = "+response.vote_date);
         }
     }
-
-
-    public static class Question {
-
-        String question;
-        String vote_date;
-
-    }
-
-
 
     // QueryInterface
     public interface Query {
         @POST("/questions")
         Question questions();
-
-
     }
 
 

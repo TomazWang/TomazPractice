@@ -10,7 +10,8 @@ import android.util.Log;
 import com.wishmobile.tomazpractice.calculatorview.CalculatorFragment;
 import com.wishmobile.tomazpractice.drawermenu.DrawerActivity;
 import com.wishmobile.tomazpractice.fragment.MainMenuFragment;
-import com.wishmobile.tomazpractice.network.NetworkActivity;
+import com.wishmobile.tomazpractice.network.QsireProductFragment;
+import com.wishmobile.tomazpractice.network.QuestionApiActivity;
 import com.wishmobile.tomazpractice.wallet.WalletActiviy;
 import com.wishmobile.tomazpractice.listview.ListViewFragment;
 import com.wishmobile.tomazpractice.pageindicator.CirclePageIndicatorActivity;
@@ -27,9 +28,8 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
     private static final String STACK_KEY_LIST_VIEW_FRAGMENT = "listViewFragment";
     private static final String STACK_KEY_RECYCLER_VIEW_FRAGMENT = "recyclerViewFragment";
     private static final String STACK_KEY_CALCULATOR_FRAGMENT = "calculatorFragment";
+    private static final String STACK_KEY_QSIRE = "qsire_fragment";
     private static final String STACK_KEY_PAGE_INDICATOR = "pageIndicator";
-
-
     private static final String STACK_KEY_SCROLL_VIEW = "scrollviewFragment";
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
             "TabView",
             "Page Indicator",
             "FormView",
-            "API"
+            "API",
+            "Qsire"
             //TODO: add item
     };
 
@@ -132,11 +133,14 @@ public class MainActivity extends AppCompatActivity implements MainMenuFragment.
 
             case 8:
                 // API
-                gotoActivity(NetworkActivity.class);
+                gotoActivity(QuestionApiActivity.class);
                 break;
 
 
-
+            case 9:
+                QsireProductFragment qsireProductFragment = QsireProductFragment.newInstance();
+                replaceFragment(qsireProductFragment, STACK_KEY_QSIRE);
+                break;
         }
     }
 
