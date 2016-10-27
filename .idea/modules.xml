@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TomazPractice.iml" filepath="$PROJECT_DIR$/TomazPractice.iml" />
       <module fileurl="file://$PROJECT_DIR$/TomazPractice2.iml" filepath="$PROJECT_DIR$/TomazPractice2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easyviewholder/easyviewholder.iml" filepath="$PROJECT_DIR$/easyviewholder/easyviewholder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easyviewholderhelper/easyviewholderhelper.iml" filepath="$PROJECT_DIR$/easyviewholderhelper/easyviewholderhelper.iml" />
     </modules>
   </component>
 </project>

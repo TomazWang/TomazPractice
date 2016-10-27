@@ -56,6 +56,10 @@ public class ImageApi {
     public static class Response  extends BasicResponse {
         ItemResult results;
 
+        public Integer next;
+        public Integer getNext() {
+            return next;
+        }
         public ItemResult getResults() {
             return results;
         }

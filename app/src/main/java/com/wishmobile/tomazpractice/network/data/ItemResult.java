@@ -69,8 +69,6 @@ public class ItemResult {
     }
 
     public ArrayList<Product> product_info = new ArrayList<>();
-    public int next;
-
     public ArrayList<Product> getProductList() {
         return product_info;
     }
@@ -83,7 +81,4 @@ public class ItemResult {
         }
     }
 
-    public int getNext() {
-        return next;
-    }
 }

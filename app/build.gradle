@@ -81,6 +81,10 @@ android {
         }
 
 
+        // ultimate recycler view
+        compile 'com.marshalchen.ultimaterecyclerview:library:0.3.4'
+
+
     }
     compileOptions {
         targetCompatibility 1.8

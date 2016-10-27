@@ -1,58 +1,64 @@
 package com.wishmobile.tomazpractice.network;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wishmobile.tomazpractice.R;
 import com.wishmobile.tomazpractice.network.data.ItemResult;
-import com.wishmobile.tomazpractice.view.recyclerview.DataListAdapter;
-import com.wishmobile.tomazpractice.view.recyclerview.EasyViewHolder;
+import com.wishmobile.tomazpractice.view.recyclerview.UltimateDataListAdapter;
+import com.wishmobile.tomazpractice.view.recyclerview.easyviewholder.EasyViewHolderHelper;
 
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by TomazWang on 2016/10/26.
  */
 
-public class QsireProductListAdapter extends DataListAdapter<ItemResult.Product, EasyViewHolder> {
+public class QsireProductListAdapter extends UltimateDataListAdapter<ItemResult.Product> {
 
+
+    private static final String TAG = QsireProductListAdapter.class.getSimpleName();
+
+    private int halfWindowWidth = 0;
 
     public QsireProductListAdapter(ArrayList<ItemResult.Product> dataList) {
         super(dataList, R.layout.item_product_list);
     }
 
     @Override
-    public EasyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new EasyViewHolder(getSimpleItemLayoutResId(), parent);
-    }
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
 
-    @Override
-    public void onBindViewHolder(EasyViewHolder holder, int position) {
+        if (viewHolder.getItemViewType() != VIEW_TYPES.NORMAL) {
+            return;
+        }
+
+        EasyViewHolderHelper helper = EasyViewHolderHelper.getEasyViewHolderHelper(viewHolder);
 
         ItemResult.Product product = getItem(position);
 
-        holder.setText(R.id.txt_title, product.getTitle());
-        Log.d(TAG, "onBindViewHolder: title = " + product.getTitle());
+        helper.setText(R.id.txt_title, product.getTitle());
 
         String unit = product.getPrice_unit();
 
-        holder.setText(R.id.txt_original_price, unit + " " + product.getOriginal_price());
-        holder.setText(R.id.txt_sale_price, unit + " " + product.getSale_price());
+        helper.setText(R.id.txt_original_price, unit + " " + product.getOriginal_price())
+                .setText(R.id.txt_sale_price, unit + " " + product.getSale_price());
 
-        TextView saleText = holder.getView(R.id.txt_original_price);
+        // cross-line on sale price
+        TextView saleText = helper.getView(R.id.txt_original_price);
         Paint paint = saleText.getPaint();
         paint.setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         paint.setAntiAlias(true);
 
 
-        Log.d(TAG, "onBindViewHolder: color code = " + product.getFeature_image_color_code());
         int bgColor = Color.BLACK;
         try {
             bgColor = Color.parseColor(product.getFeature_image_color_code());
@@ -61,22 +67,56 @@ public class QsireProductListAdapter extends DataListAdapter<ItemResult.Product,
             bgColor = Color.parseColor("#e8afbe");
         }
 
-        holder.setBackgroundColor(R.id.view_container, bgColor);
+        helper.setBackgroundColor(R.id.view_container, bgColor);
         ItemResult.ImageData imageData = product.getFeature_image();
-        ImageView imageView = holder.getView(R.id.iv_feature_img);
+        ImageView imageView = helper.getView(R.id.iv_feature_img);
+
+        int width = getHalfWindowWidth(imageView.getContext());
+
 
         if (imageData != null) {
 
-            imageView.getLayoutParams().height = imageData.getHeight();
+            float scale =  (float)width / imageData.getWidth();
+            int height = (int) (scale * imageData.getHeight());
+
+            Log.i(TAG, "onBindViewHolder: title " + product.getTitle());
+            Log.d(TAG, "onBindViewHolder: image height from api = " + imageData.getHeight());
+            Log.d(TAG, "onBindViewHolder: scale = "+scale);
+            Log.d(TAG, "onBindViewHolder: height of " + product.getTitle() + " = " + height);
 
             Glide.with(imageView.getContext())
                     .load(product.getFeature_image().getUrl())
+                    .fitCenter()
+                    .override(width, height)
                     .into(imageView);
-        } else {
-            Log.w(TAG, "onBindViewHolder: feature image is null");
-        }
 
-        Log.d(TAG, "onBindViewHolder: after binding");
+
+        }
     }
 
+    private int getHalfWindowWidth(Context context) {
+        if (this.halfWindowWidth > 0) {
+            return halfWindowWidth;
+        }
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        this.halfWindowWidth = display.getWidth() / 2;
+        return halfWindowWidth;
+    }
+
+    @Override
+    public UltimateRecyclerviewViewHolder onCreateViewHolder(ViewGroup parent) {
+        return new UltimateRecyclerviewViewHolder(getSimpleItemView(parent));
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+        return null;
+    }
+
+    @Override
+    public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+    }
 }
